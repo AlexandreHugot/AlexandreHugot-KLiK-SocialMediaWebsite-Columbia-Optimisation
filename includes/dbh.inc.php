@@ -2,10 +2,10 @@
 
 $serverName = "localhost";
 $dBUsername = "root";
-$dBPassword = "eldererajinMenji99";
+$dBPassword = "";
 $dBName = "klik_database";
 
-$conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName, 3307);
+$conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName, 3306);
 
 if (!$conn)
 {
