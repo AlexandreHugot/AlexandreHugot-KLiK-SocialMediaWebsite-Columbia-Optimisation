@@ -77,8 +77,10 @@
                              * On créer les dates à partir des données reçus par la requête.
                              */
                             
-                            $date1 = date_create(date("Y-m-d",time())); //Format DATETIME DE MySQL
+                            $date1 = date_create(date("Y-m-d H:i:s",time())); //Format DATETIME DE MySQL
+                            var_dump($date1);
                             $date2 = date_create($row['event_date']);
+                            var_dump($date2);
                             
                             /**
                              * Correction de l'appel date_diff, le calcul des deux dates était incorrect par conséquent avant il s'agissait de : date debut - date fin.
@@ -86,8 +88,10 @@
                              */
                             $diff = date_diff($date2,$date1);
 
+                            var_dump($diff);
+
                             $diff_sec = $diff->format('%r').( 
-                                                ($diff->s-1)+ 
+                                                ($diff->s)+ 
                                                 (60*($diff->i))+ 
                                                 (60*60*($diff->h))+ 
                                                 (24*60*60*($diff->d))+ 
