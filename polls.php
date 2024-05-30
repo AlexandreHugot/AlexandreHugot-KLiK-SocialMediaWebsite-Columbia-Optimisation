@@ -2,11 +2,15 @@
 <?php
 
     session_start();
+    //fichier de connexion à la Base de données
     require 'includes/dbh.inc.php';
+    // Constante pour le titre de la page 
     define('TITLE',"Polls | KLiK");
     
+    // vérifie si l'utilisateur est authentifié
     if(!isset($_SESSION['userId']))
     {
+        // si pas authentifié renvoie la page de connexion 
         header("Location: login.php");
         exit();
     }
@@ -19,6 +23,7 @@
     
     <body style="background: #f1f1f1">
 
+         <!-- Inclut la barre de navigation -->   
         <?php include 'includes/navbar.php'; ?>
    
 
@@ -45,21 +50,26 @@
                     from polls p 
                     order by votes desc";
             
+            //initialialise la connexion 
             $stmt = mysqli_stmt_init($conn);    
-
+            //prépare l'instruction sql
             if (!mysqli_stmt_prepare($stmt, $sql))
             {
                 die('SQL error');
             }
             else
             {
+                //exécution de la requête
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
 
                 while ($row = mysqli_fetch_assoc($result))
                 {
                     
-                    echo '<a href="poll.php?poll='.$row['id'].'">
+                    // Vérifiez si le sondage est fermé
+                    $pollLink = $row['locked'] == 1 ? 'polls.php' : 'poll.php?poll=' . $row['id'];
+                    // Génère le lien vers le sondage
+                    echo '<a href="' . $pollLink . '">
                         <div class="media text-muted pt-3">
                             <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img poll-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
@@ -72,6 +82,7 @@
                             </p>
                             <span class="text-right">';
                     
+                     // Affiche une icône de suppression s'il est un admin
                     if ($_SESSION['userLevel'] == 1)
                     {
                         echo '<a href="includes/delete-poll.inc.php?pollid='.$row['id'].'" >
@@ -93,7 +104,7 @@
                 }
            }
            
-           
+            // Si l'utilisateur est un administrateur, affiche un bouton pour créer un sondage
             if ($_SESSION['userLevel'] == 1)
             {
                 echo '<small class="d-block text-right mt-3">
@@ -111,7 +122,7 @@
         
       </div>
     </main>
-        
+         <!-- Inclut le pied de page -->
         <?php include 'includes/footer.php'; ?>
         
 	<script src="js/jquery.min.js"></script>

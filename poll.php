@@ -1,12 +1,14 @@
 <?php
 
     session_start();
+    // Inclut le fichier de connexion à la base de données
     require 'includes/dbh.inc.php';
-
+    //Définit le titre de la page
     define('TITLE',"Poll | KLiK");
-    
+    //vérifie si l'utilisateur est déjà connécté
     if(!isset($_SESSION['userId']))
     {
+        //si l'utilisateur n'est pas connécté, il est renvoyé au login
         header("Location: login.php");
         exit();
     }
@@ -39,21 +41,23 @@
         <div class="container">
         <div class="row">
           <div class="col-sm-3">
-            
-              <?php include 'includes/profile-card.php'; ?>
+            <!-- Inclut la carte de profil utilisateur -->
+            <?php include 'includes/profile-card.php'; ?>
               
           </div>
             
-            
+
             <div class="col-sm-9" id="user-section">
-              
+
+              <!-- banière de l'événement -->
               <img class="event-cover" src="img/pollpage-cover.png">
               
               <div class="px-5 my-5">
                   <div class="px-5">
                       
-                      <form action="" method="post" name="pollFrm">
-        
+                    <!-- Formulaire de vote -->
+                    <form action="" method="post" name="pollFrm">
+
                         <h1><?php echo $pollData['poll']['subject']; ?></h1>
                         <br>
                         <p class="text-muted"><?php echo $pollData['poll']['poll_desc']; ?></p>
@@ -65,7 +69,7 @@
                             
                         
                             <?php 
-
+                             // Vérifie si l'utilisateur a déjà voté pour ce sondage verrouillé
                                 $sql2 = 'select v.id '
                                         . 'from poll_votes v join polls p '
                                         . 'on v.poll_id = p.id '
@@ -86,7 +90,7 @@
                                 {
                                     $voteCheck = true;
                                 }
-
+                                // Vérifie pour quel choix l'utilisateur a voté
                                 $sql2 = 'select poll_option_id from poll_votes where poll_id = ? and vote_by = ?';
                                 $stmt = mysqli_stmt_init($conn);    
                                 mysqli_stmt_prepare($stmt, $sql2);
@@ -94,12 +98,13 @@
                                 mysqli_stmt_execute($stmt);
                                 $result = mysqli_stmt_get_result($stmt);
                                 $row = mysqli_fetch_assoc($result);
-                                $voted = $row['poll_option_id'];
+                                $voted = isset($row['poll_option_id']) ? $row['poll_option_id'] : null;
 
+                                // Affiche les options de vote
                                 foreach($pollData['options'] as $opt){
 
                                     //echo '<input type="radio" name="voteOpt" id="option'.$opt['id'].'" '
-                                     //   . 'value="'.$opt['id'].'"';
+                                        //   . 'value="'.$opt['id'].'"';
                                     
                                     echo '<div class="funkyradio-info">
                                                 <input type="radio" name="voteOpt" id="option'.$opt['id'].'"
@@ -120,7 +125,8 @@
                                 }
                                 
                                 echo '</div><br><br>';
-                                
+
+                                 // Affiche le bouton de soumission du vote si l'utilisateur n'a pas encore voté
                                 if ($voteCheck)
                                 {
                                     echo '<input type="submit" name="voteSubmit" class="btn btn-lg btn-primary" 
@@ -129,8 +135,7 @@
                                 }
                                 if (!empty($voted))
                                 {
-                                    // Poll Results    
-
+                                    // Affiche les résultats du sondage
                                     $pollResult = $poll->getResult($_GET['poll']);
                                     echo '<h1>Results</h1>';
                                     echo '<b class="text-muted">Total Votes: </b>'.$pollResult['total_votes'].'
@@ -141,19 +146,18 @@
                                     if($voteCheck && !empty($pollResult['options']))
                                     { 
                                         $i=0;
-                                        //Option bar color class array
+                                         // Tableau des couleurs pour les barres de progression
                                         $barColorArr = array('azure','emerald','violet','yellow','red');
-                                        //Generate option bars with votes count
-
-
+                                        
+                                        // Génère les barres de progression pour chaque option
                                         foreach($pollResult['options'] as $opt=>$vote){
 
-                                            //Calculate vote percent
+                                            // Calcule le pourcentage de votes
                                             $votePercent = round(($vote/$pollResult['total_votes'])*100);
                                             $votePercent = !empty($votePercent)?$votePercent.'':'0';
 
 
-                                            //Define bar color class
+                                            // Définit la classe de couleur de la barre
                                             if(!array_key_exists($i, $barColorArr)){
                                                 $i=0;
                                             }
@@ -161,7 +165,7 @@
                             ?>
 
                             <div class="line-progress margin-b-20" 
-                                 data-prog-percent="<?php echo $votePercent/100; ?>"><div></div>
+                                    data-prog-percent="<?php echo $votePercent/100; ?>"><div></div>
                                 <p class="progress-title"><?php echo $opt." - <b>".$vote.' user(s)'; ?></b></p>
                             </div><br>    
 
@@ -174,13 +178,14 @@
                             
                             <br><br>
                             <a href="./poll-voters.php?poll=<?php echo $_GET['poll']; ?>" 
-                               class="btn btn-secondary">View All Votes</a> 
+                                class="btn btn-secondary">View All Votes</a> 
                             <a href="./poll-view.php" class="btn btn-secondary">View All Polls</a>
                             
                             <?php
                                 }
                             ?>
 
+                        <!-- Champ caché pour envoyer l'ID du sondage -->
                         <input type="hidden" name="pollID" value="<?php echo $pollData['poll']['id']; ?>">
 
                     </form>
@@ -198,16 +203,18 @@
         
         
     <?php
-        //if vote is submitted
+        // Si le vote est soumis
         if(isset($_POST['voteSubmit'])){
             $voteData = array(
                 'poll_id' => $_POST['pollID'],
                 'poll_option_id' => $_POST['voteOpt'],
                 'poll_vote_by' => $_SESSION['userId']
             );
-            //insert vote data
+            // Insère les données du vote dans la bdd
             $voteSubmit = $poll->vote($voteData);
             //header("Location: ./poll.php?poll=".$pollid);
+
+            // Actualise la page pour afficher les résultats mis à jour
             header("Refresh:0");
         }
     ?>
