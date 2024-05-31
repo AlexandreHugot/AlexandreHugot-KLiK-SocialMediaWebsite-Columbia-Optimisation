@@ -70,6 +70,8 @@
                         <?php
                                
                             }
+
+                            mysqli_free_result($result);
                         }
 
                         ?>
@@ -122,13 +124,13 @@
 
                                             mysqli_stmt_execute($stmt);
                                             $conver = mysqli_stmt_get_result($stmt);
-                                            mysqli_stmt_store_result($stmt);
 
                                             if (mysqli_num_rows($conver) > 0)
                                             {
 
                                                 $fetch = mysqli_fetch_assoc($conver);
                                                 $conversation_id = $fetch['id'];
+                                                mysqli_free_result($conver);
 
                                             }
                                             else
