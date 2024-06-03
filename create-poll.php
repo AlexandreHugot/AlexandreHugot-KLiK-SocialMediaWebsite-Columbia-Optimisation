@@ -38,7 +38,7 @@
                                                     echo '<h5 class="text-danger">*Fill In All The Fields</h5>';
                                                 }
                                                 else if ($_GET['error'] == 'titletaken')
-                                                {
+                                                {AlexandreHugot-KLiK-SocialMediaWebsite-Columbia-Optimisation
                                                     echo '<h5 class="text-danger">*There is already a poll with this title</h5>';
                                                 }
                                                 else if ($_GET['error'] == 'sqlerror')
@@ -98,7 +98,7 @@
 					</div>
                                         
                                         <div class="text-center">
-                                        <br><br><a class="btn btn-light btn-lg btn-block" href="poll-view.php">
+                                        <br><br><a class="btn btn-light btn-lg btn-block" href="polls.php">
                                             View Polls</a>
                                         </div>
                                         
