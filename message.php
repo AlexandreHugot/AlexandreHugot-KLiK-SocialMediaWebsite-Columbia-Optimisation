@@ -12,6 +12,7 @@
     }  
     
     include 'includes/HTML-head.php';
+    include 'ExceptionSelfMessage.php';
 ?> 
 
 
@@ -105,7 +106,7 @@
 
                                     if ($resultCheck === 0)
                                     {
-                                        die("Invalid $_GET ID.");
+                                        ExceptionSelfMessage::check($_SESSION['userId'],$user_two);
                                     }
                                     else
                                     {
