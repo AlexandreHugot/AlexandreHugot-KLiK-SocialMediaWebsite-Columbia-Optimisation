@@ -33,7 +33,8 @@ module.exports = {
         './css/contact-main.css'
     ],
     keyframes: true,
-    output: './css/purified',
+    
     rejected: true,
     variables: true
 };
+
