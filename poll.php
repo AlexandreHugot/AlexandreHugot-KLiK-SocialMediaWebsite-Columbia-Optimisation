@@ -2,6 +2,7 @@
 
     session_start();
     require 'includes/dbh.inc.php';
+    include 'includes/functions.php';
 
     define('TITLE',"Poll | KLiK");
     
@@ -54,9 +55,9 @@
                       
                       <form action="" method="post" name="pollFrm">
         
-                        <h1><?php echo $pollData['poll']['subject']; ?></h1>
+                        <h1><?php echo avoidHtmlInjections($pollData['poll']['subject']); ?></h1>
                         <br>
-                        <p class="text-muted"><?php echo $pollData['poll']['poll_desc']; ?></p>
+                        <p class="text-muted"><?php echo avoidHtmlInjections($pollData['poll']['poll_desc']); ?></p>
                         <br><br>
                         
                             
@@ -115,7 +116,7 @@
                                     }
                                     
                                     echo            '> 
-                                                    <label for="option'.$opt['id'].'">'.$opt['name'].'</label>
+                                                    <label for="option'.$opt['id'].'">'.avoidHtmlInjections($opt['name']).'</label>
                                             </div>';
                                 }
                                 
@@ -162,7 +163,7 @@
 
                             <div class="line-progress margin-b-20" 
                                  data-prog-percent="<?php echo $votePercent/100; ?>"><div></div>
-                                <p class="progress-title"><?php echo $opt." - <b>".$vote.' user(s)'; ?></b></p>
+                                <p class="progress-title"><?php echo avoidHtmlInjections($opt)." - <b>".$vote.' user(s)'; ?></b></p>
                             </div><br>    
 
                             <?php
@@ -173,7 +174,7 @@
                             ?>
                             
                             <br><br>
-                            <a href="./poll-voters.php?poll=<?php echo $_GET['poll']; ?>" 
+                            <a href="./poll-voters.php?poll=<?php echo avoidHtmlInjections($_GET['poll']); ?>" 
                                class="btn btn-secondary">View All Votes</a> 
                             <a href="./poll-view.php" class="btn btn-secondary">View All Polls</a>
                             
@@ -181,7 +182,7 @@
                                 }
                             ?>
 
-                        <input type="hidden" name="pollID" value="<?php echo $pollData['poll']['id']; ?>">
+                        <input type="hidden" name="pollID" value="<?php echo avoidHtmlInjections($pollData['poll']['id']); ?>">
 
                     </form>
                   </div>

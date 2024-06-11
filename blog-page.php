@@ -22,6 +22,7 @@
     }
     
     include 'includes/HTML-head.php'; 
+    include 'includes/functions.php';
 ?> 
     </head>
     <body>
@@ -67,10 +68,10 @@
               <div class="px-5">
                   
                   <br><br><br>
-                  <h1><?php echo ucwords($row['blog_title']) ?></h1>
+                  <h1><?php echo avoidHtmlInjections(ucwords($row['blog_title'])) ?></h1>
                   <br><br><br>
                   
-                  <p class="text-justify"><?php echo $row['blog_content'] ?></p>
+                  <p class="text-justify"><?php echo avoidHtmlInjections($row['blog_content']) ?></p>
                   
                   <div class="blog-likes pr-1 pt-5">
                       
@@ -81,7 +82,7 @@
                             <?php echo $row['blog_votes']; ?>
                       </h3>
                       <br>
-                      <p class="text-muted">Author: <?php echo ucwords($row['uidUsers']); ?></p>
+                      <p class="text-muted">Author: <?php echo avoidHtmlInjections(ucwords($row['uidUsers'])); ?></p>
                   </div>
                   
               </div>
