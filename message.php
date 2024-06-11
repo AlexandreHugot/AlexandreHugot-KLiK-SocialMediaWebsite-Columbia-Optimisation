@@ -12,7 +12,7 @@
     }  
     
     include 'includes/HTML-head.php';
-    include 'ExceptionSelfMessage.php';
+    include 'exceptions/ExceptionSelfMessage.php';
 ?> 
 
 
