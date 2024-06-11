@@ -37,4 +37,4 @@ module.exports = {
     rejected: true,
     variables: true
 };
-
+// purgecss --config ./css/purgecss.config.js --output ./outputCss/purged.css 
