@@ -28,76 +28,52 @@
                             
                                 if(isset($_GET['error']))
                                 {
-                                    if($_GET['error'] == 'emptyfields')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Fill In All The Fields
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'invalidmailuid')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Please enter a valid email and user name
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'invalidmail')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Please enter a valid email
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'invaliduid')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Please enter a valid user name
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'passwordcheck')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Passwords donot match
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'usertaken')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> This User name is already taken
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'invalidimagetype')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Invalid image type 
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'imguploaderror')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Image upload error, please try again
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'imgsizeexceeded')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Error: </strong> Image too large
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'sqlerror')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                                <strong>Website Error: </strong> Contact admin to have the issue fixed
-                                              </div>';
-                                    }
-                                    else if ($_GET['error'] == 'badpassword')
-                                    {
-                                        echo '<div class="alert alert-danger" role="alert">
-                                              <strong>Website Error: </strong> The password must contains at least : </br>
-                                              8 charcaters </br>
-                                              1 uppercase letter </br>
-                                              1 lowercase letter </br>
-                                              1 number </br>
-                                              </div>';
-                                    }
+                                  switch($_GET['error'])
+                                  {                               
+                                    case 'emptyfields':
+                                        $errorMessage = "Fill In All The Fields";
+                                    break;
+                                    case 'invalidmailuid' :
+                                        $errorMessage = "Please enter a valid email and user name";
+                                    break;
+                                    case 'invalidmail' :
+                                        $errorMessage = "Please enter a valid email";
+                                    break;
+                                    case 'invaliduid' :
+                                        $errorMessage = "Please enter a valid user name";
+                                    break;
+                                    case 'passwordcheck' :
+                                        $errorMessage = "Passwords donot match";
+                                    break;
+                                    case 'usertaken' :
+                                        $errorMessage = "This User name is already taken";
+                                    break;
+                                    case 'invalidimagetype' :
+                                        $errorMessage = "Invalid image type"; 
+                                    break;
+                                    case 'imguploaderror' :
+                                        $errorMessage = "Image upload error, please try again";
+                                    break;
+                                    case 'imgsizeexceeded' :
+                                        $errorMessage = "Image too large";
+                                    break;
+                                    case 'sqlerror' :
+                                        $errorMessage = "Contact admin to have the issue fixed";
+                                    break;
+                                    case 'badpassword' :
+                                        $errorMessage = "The password must contains at least : </br>
+                                                        8 charcaters </br>
+                                                        1 uppercase letter </br>
+                                                        1 lowercase letter </br>
+                                                        1 number </br>";
+                                    break;
+                                    default:
+                                        $errorMessage = "Unknown error occurred";
+                                    break;
+                                  }
+                                  echo '<div class="alert alert-danger" role="alert">
+                                        <strong>Error: </strong>' . $errorMessage . '
+                                        </div>';
                                 }
                                 else if (isset($_GET['signup']) == 'success')
                                 {
