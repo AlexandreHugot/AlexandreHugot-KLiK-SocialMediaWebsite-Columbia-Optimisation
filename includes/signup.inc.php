@@ -4,6 +4,7 @@ if (isset($_POST['signup-submit']))
 {
     
     require 'dbh.inc.php';
+    include '../exceptions/ExceptionBadPassword.php';
     
     
     $userName = $_POST['uid'];
@@ -19,6 +20,11 @@ if (isset($_POST['signup-submit']))
     if (empty($userName) || empty($email) || empty($password) || empty($passwordRepeat))
     {
         header("Location: ../signup.php?error=emptyfields&uid=".$userName."&mail=".$email);
+        exit();
+    }
+    else if (!(preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password) && strlen($password) >= 8))
+    {
+        header("Location: ../signup.php?error=badpassword");
         exit();
     }
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $userName))
@@ -92,11 +98,13 @@ if (isset($_POST['signup-submit']))
                     exit();
                 }
             }
+
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
         }
     }
     
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
+    
     
 }
 

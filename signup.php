@@ -88,6 +88,16 @@
                                                 <strong>Website Error: </strong> Contact admin to have the issue fixed
                                               </div>';
                                     }
+                                    else if ($_GET['error'] == 'badpassword')
+                                    {
+                                        echo '<div class="alert alert-danger" role="alert">
+                                              <strong>Website Error: </strong> The password must contains at least : </br>
+                                              8 charcaters </br>
+                                              1 uppercase letter </br>
+                                              1 lowercase letter </br>
+                                              1 number </br>
+                                              </div>';
+                                    }
                                 }
                                 else if (isset($_GET['signup']) == 'success')
                                 {
