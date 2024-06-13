@@ -51,13 +51,24 @@
             
             
           <div class="col-sm-8 text-center" id="user-section">
-              <img class="cover-img" src="img/user-cover.png">
-              <img class="profile-img" src="uploads/<?php echo $user['userImg']; ?>">
+                <picture>
+                    <source type="image/webp" srcset="img/user-cover.webp">
+                    <img alt="bannière" class="cover-img" src="img/user-cover.png" alt="Cover image">
+                </picture>
+                <picture>
+                <source type="image/webp" srcset="uploads/<?php echo pathinfo($user['userImg'], PATHINFO_FILENAME); ?>.webp">
+                        <img alt="photo de profil" class="profile-img" src="uploads/<?php echo $user['userImg']; ?>">
+                </picture>
               
               <?php  
                     if ($user['userLevel'] === 1)
                     {
-                        echo '<img id="admin-badge" src="img/admin-badge.png">';
+                        echo '
+                        <picture>
+                            <source type="image/webp" srcset="img/user-cover.webp">
+                            <img alt="badge admin" id="admin-badge" src="img/admin-badge.png">
+                        </picture>
+                        ';
                     }
               ?>
               
@@ -110,7 +121,10 @@
                         {
                             echo '<div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                 <div class="col-sm-4">
-                                    <img class="profile-empty-img" src="img/empty.png">
+                                    <picture>
+                                        <source type="image/webp" srcset="img/empty.webp">
+                                        <img class="profile-empty-img" src="img/empty.png">
+                                    </picture>
                                   </div>
                                   <div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                     </div>
@@ -123,7 +137,10 @@
                                     echo '<div class="col-sm-4" style="padding-bottom: 30px;">
                                         <div class="card user-blogs">
                                             <a href="blog-page.php?id='.$row['blog_id'].'">
-                                            <img class="card-img-top" src="uploads/'.$row['blog_img'].'" alt="Card image cap">
+                                            <picture>
+                                                <source type="image/webp" srcset="uploads/'.$row['blog_img'].'.webp">
+                                                <img class="card-img-top" src="uploads/'.$row['blog_img'].'" alt="Card image cap">
+                                            </picture>
                                             <div class="card-block p-2">
                                               <p class="card-title">'.ucwords($row['blog_title']).'</p>
                                              <p class="card-text"><small class="text-muted">'
@@ -166,7 +183,10 @@
                         {
                             echo '<div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                 <div class="col-sm-4">
-                                    <img class="profile-empty-img" src="img/empty.png">
+                                    <picture>
+                                        <source type="image/webp" srcset="img/empty.webp">
+                                        <img class="profile-empty-img" src="img/empty.png">
+                                    </picture>
                                   </div>
                                   <div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                     </div>
@@ -179,7 +199,10 @@
                                 echo '<div class="col-sm-4" style="padding-bottom: 30px;">
                                         <div class="card user-blogs">
                                             <a href="posts.php?topic='.$row['topic_id'].'">
-                                            <img class="card-img-top" src="img/forum-cover.png" alt="Card image cap">
+                                            <picture>
+                                                <source type="image/webp" srcset="img/forum-cover.webp">
+                                                <img class="card-img-top" src="img/forum-cover.png" alt="Card image cap">
+                                            </picture>
                                             <div class="card-block p-2">
                                               <p class="card-title">'.ucwords($row['topic_subject']).'</p>
                                              <p class="card-text"><small class="text-muted">'
@@ -226,7 +249,10 @@
                         {
                             echo '<div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                 <div class="col-sm-4">
+                                <picture>
+                                    <source type="image/webp" srcset="img/empty.webp">
                                     <img class="profile-empty-img" src="img/empty.png">
+                                </picture>
                                   </div>
                                   <div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                     </div>
@@ -239,7 +265,10 @@
                                 echo '<div class="col-sm-4" style="padding-bottom: 30px;">
                                         <div class="card user-blogs">
                                             <a href="poll.php?poll='.$row['poll_id'].'">
-                                            <img class="card-img-top" src="img/poll-cover.png" alt="Card image cap">
+                                            <picture>
+                                                <source type="image/webp" srcset="img/poll-cover.webp">
+                                                <img class="card-img-top" src="img/poll-cover.png" alt="Card image cap">
+                                            </picture>
                                             <div class="card-block p-2">
                                               <p class="card-title">'.ucwords($row['subject']).'</p>
                                              <p class="card-text"><small class="text-muted">'
