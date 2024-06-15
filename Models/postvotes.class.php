@@ -2,6 +2,7 @@
 
 require_once("user.class.php");
 
+
 /**
  * Class which represents votes made by a user of a poll
  * @author Lakhdar Gibril

@@ -25,6 +25,24 @@ class Post {
     */
 
     /**
+     * Get the id of the post
+     * @return int the id of the post
+     * @author Lakhdar Gibril
+     */
+    public function getId() : int {
+        return $this->post_id;
+    }
+
+    /**
+     * Set a new id for the post
+     * @param int $id : the new id of the post
+     * @author Lakhdar Gibril
+     */
+    public function setId(int $id) : void {
+        $this->post_id = $id;
+    }
+
+    /**
      * Get the content of the post.
      * @return string The content of the post.
      * @author Lakhdar Gibril
@@ -54,12 +72,12 @@ class Post {
     }
     /**
      * Set the date of the post.
-     * @param date $post_date The date of the post.
+     * @param string $post_date The date of the post.
      * @author Lakhdar Gibril
      */
-    public function setPostDate(date $post_date): void
+    public function setPostDate(string $post_date): void
     {
-        $this->post_date = $post_date;
+        $this->post_date = date_create($post_date);
     }
 
     /**

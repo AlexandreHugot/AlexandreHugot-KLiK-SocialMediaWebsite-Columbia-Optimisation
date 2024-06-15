@@ -73,12 +73,12 @@ class Poll {
     }
     /**
      * Set the creation date of the poll.
-     * @param date $created The creation date of the poll.
+     * @param string $created The creation date of the poll.
      * @author Lakhdar Gibril
     */
-    public function setCreated(date $created): void
+    public function setCreated(string $created): void
     {
-        $this->created = $created;
+        $this->created = date_create($created);
     }
 
     /**
@@ -92,12 +92,12 @@ class Poll {
     }
     /**
      * Set the last modified date of the poll.
-     * @param date $modified The last modified date of the poll.
+     * @param string $modified The last modified date of the poll.
      * @author Lakhdar Gibril
     */
-    public function setModified(date $modified): void
+    public function setModified(string $modified): void
     {
-        $this->modified = $modified;
+        $this->modified = date_create($modified);
     }
 
     /**

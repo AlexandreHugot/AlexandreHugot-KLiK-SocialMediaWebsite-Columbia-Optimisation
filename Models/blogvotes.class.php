@@ -83,11 +83,11 @@ class BlogVotes {
     }
     /**
      * Update the date of the blog vote
-     * @param date $voteDate : the date of the blog vote
+     * @param string $voteDate : the date of the blog vote
      * @author Lakhdar Gibril
      */
-    public function setVoteDate(date $voteDate) : void {
-        $this->voteDate = $voteDate;
+    public function setVoteDate(string $voteDate) : void {
+        $this->voteDate = date_create($voteDate);
     }
 
     /**
