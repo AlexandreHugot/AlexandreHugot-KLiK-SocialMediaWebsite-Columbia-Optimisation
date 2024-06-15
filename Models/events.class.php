@@ -90,12 +90,12 @@ class Events {
     }
     /**
      * Set the creation date of the event.
-     * @param date $date_created The creation date of the event.
+     * @param string $date_created The creation date of the event.
      * @author Lakhdar Gibril
      */
-    public function setDateCreated(date $date_created): void
+    public function setDateCreated(string $date_created): void
     {
-        $this->date_created = $date_created;
+        $this->date_created = date_create($date_created);
     }
 
     /**
@@ -109,12 +109,12 @@ class Events {
     }
     /**
      * Set the date of the event.
-     * @param date $event_date The date of the event.
+     * @param string $event_date The date of the event.
      * @author Lakhdar Gibril
      */
-    public function setEventDate(date $event_date): void
+    public function setEventDate(string $event_date): void
     {
-        $this->event_date = $event_date;
+        $this->event_date = date_create($event_date);
     }
 
     /**

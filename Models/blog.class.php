@@ -101,11 +101,11 @@ class Blog {
     }
     /**
      * Allow to update the creation date of the blog
-     * @param date $blogDate : the new creation date of the blog
+     * @param string $blogDate : the new creation date of the blog
      * @author Lakhdar Gibril
      */
-    public function setBlogDate(date $blogDate) : void {
-        $this->blog_date = $blogDate;
+    public function setBlogDate(string $blogDate) : void {
+        $this->blog_date = date_create($blogDate);
     }
 
     /**

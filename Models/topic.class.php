@@ -72,12 +72,12 @@ class Topic {
     }
     /**
      * Set the date the topic was created.
-     * @param date $topic_date The date the topic was created.
+     * @param string $topic_date The date the topic was created as a string.
      * @author Lakhdar Gibril
      */
-    public function setTopicDate(date $topic_date): void
+    public function setTopicDate(string $topic_date): void
     {
-        $this->topic_date = $topic_date;
+        $this->topic_date = date_create($topic_date);
     }
 
     /**
