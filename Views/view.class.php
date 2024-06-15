@@ -17,7 +17,6 @@
             $this->title = $action;
         }
 
-
         /**
          * Method to generate data into a specified file
          * @param array $data : an array containing the specified data to put in the file

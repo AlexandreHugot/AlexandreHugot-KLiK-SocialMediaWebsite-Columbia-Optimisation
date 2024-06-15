@@ -50,14 +50,12 @@
 
                     </div>
 
-                    <div class="col-sm-7" >
-
+                    <div class="col-sm-7">
                         <div class="text-center p-3">
                             <img src="img/200.png">
                             <h2 class='text-muted'>DASHBOARD</h2>
                             <br>
                         </div>
-
 
                         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                             <li class="nav-item">

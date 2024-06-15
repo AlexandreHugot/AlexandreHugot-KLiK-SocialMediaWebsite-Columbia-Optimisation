@@ -83,7 +83,6 @@
                       <br>
                       <p class="text-muted">Author: <?php echo ucwords($row['uidUsers']); ?></p>
                   </div>
-                  
               </div>
               
               
