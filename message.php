@@ -55,7 +55,12 @@
                       <a href='./message.php?id=<?php echo $row['idUsers']; ?>'><div class="chat_list ">
                             <div class="chat_people">
                                 <div class="chat_img"> 
-                                    <img class="chat_people_img" src="uploads/<?php echo $row['userImg'] ?>"> 
+
+                                    <picture>
+                                        <source srcset="uploads/<?php echo pathinfo($row['userImg'], PATHINFO_FILENAME); ?>.webp" type="image/webp">
+                                        <img class="chat_people_img" src="uploads/<?php echo $row['userImg']; ?>" alt="User Image">
+                                    </picture>
+
                                 </div>
                               <div class="chat_ib">
                                 <h5>

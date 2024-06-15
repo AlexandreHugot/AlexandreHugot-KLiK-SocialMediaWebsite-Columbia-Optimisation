@@ -42,12 +42,20 @@
 
                     <?php
 
-                        $sql = "select e.event_date, e.event_id, e.event_by, e.title, e.event_image, i.description,
+                        //avant
+                        $sql = "SELECT e.event_date, e.event_id, e.event_by, e.title, e.event_image, i.description,
                                     u.uidUsers, u.userImg, i.headline as e_headline
                                 from events e, event_info i, users u
                                 where e.event_id = ? 
                                 and e.event_by = u.idUsers
                                 and e.event_id = i.event";
+                        //apres
+                        $sql = "SELECT e.event_date, e.event_id, e.event_by, e.title, e.event_image, i.description,
+                                u.uidUsers, u.userImg, i.headline AS e_headline
+                        FROM events e
+                        INNER JOIN event_info i ON e.event_id = i.event
+                        INNER JOIN users u ON e.event_by = u.idUsers
+                        WHERE e.event_id = ?";
 
                         $stmt = mysqli_stmt_init($conn);    
 
@@ -66,7 +74,7 @@
                             $date1 = date_create(date("Y-m-d"));
                             $date2 = date_create($row['event_date']);
 
-                            $diff=date_diff($date1,$date2, absolute);
+                            $diff=date_diff($date1,$date2, true);
 
                             $diff_sec = $diff->format('%r').( 
                                             ($diff->s)+ 
@@ -79,9 +87,17 @@
                         }
                     ?>
 
-                    <img class="blog-cover" src="uploads/<?php echo $row['event_image']; ?>">
+                    <!-- Pour l'image de couverture du blog -->
+                    <picture>
+                        <source srcset="uploads/<?php echo pathinfo($row['event_image'], PATHINFO_FILENAME); ?>.webp" type="image/webp">
+                        <img class="blog-cover" src="uploads/<?php echo $row['event_image']; ?>" alt="<?php echo $row['event_image']; ?>">
+                    </picture>
 
-                    <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>">
+                    <!-- Pour l'image de l'auteur du blog -->
+                    <picture>
+                        <source srcset="uploads/<?php echo pathinfo($row['userImg'], PATHINFO_FILENAME); ?>.webp" type="image/webp">
+                        <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>" alt="<?php echo $row['userImg']; ?>">
+                    </picture>
 
                     <div class="px-5">
                         <div class="text-center px-5">

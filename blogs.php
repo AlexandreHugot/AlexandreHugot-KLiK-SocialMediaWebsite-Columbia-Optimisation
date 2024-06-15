@@ -26,7 +26,10 @@
         <main role="main" class="container">
             
       <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-          <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+        <picture>
+            <source type="image/webp" srcset="img/200.webp">
+            <img class="mr-3" src="img/200.png" alt="Klik logo" >
+        </picture>
         <div class="lh-100">
           <h1 class="mb-0 text-white lh-100">KLiK Blogs</h1>
           <small>The KLiK Hub</small>
@@ -35,22 +38,13 @@
 
       <div class="row mb-2">
           
-                <?php
-                    $sql = "select * from Blogs, users 
-                            where blogs.blog_by = users.idUsers";
-                    $stmt = mysqli_stmt_init($conn);    
+                  <?php
+                        $sql = "SELECT * FROM blogs b INNER JOIN users u ON b.blog_by = u.idUsers";
+                        $result = mysqli_query($conn, $sql);
 
-                    if (!mysqli_stmt_prepare($stmt, $sql))
-                    {
-                        die('SQL error');
-                    }
-                    else
-                    {
-                        mysqli_stmt_bind_param($stmt, "s", $userid);
-                        mysqli_stmt_execute($stmt);
-                        $result = mysqli_stmt_get_result($stmt);
-                        
-                        
+                        if (!$result) {
+                            die('SQL error');
+                        } else {
                         while ($row = mysqli_fetch_assoc($result))
                         {
                             echo '<div class="col-md-6">
@@ -66,8 +60,10 @@
                                         <p class="card-text mb-auto">'.substr($row['blog_content'],0,70).'...</p>
                                         <a href="blog-page.php?id='.$row['blog_id'].'">Continue reading</a>
                                       </div>
-                                      <img class="card-img-right flex-auto d-none d-lg-block bloglist-cover" 
-                                            src="uploads/'.$row['blog_img'].'" alt="Card image cap">
+                                      <picture>
+                                          <source type="image/webp" srcset="uploads/'.pathinfo($row['blog_img'], PATHINFO_FILENAME).'.webp">
+                                          <img class="card-img-right flex-auto d-none d-lg-block bloglist-cover" src="uploads/'.$row['blog_img'].'" alt="Card image cap">
+                                      </picture>
                                     </div>
                                   </div>';
                         }

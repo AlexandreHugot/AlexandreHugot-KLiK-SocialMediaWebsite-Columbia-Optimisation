@@ -23,7 +23,10 @@
 
         <main role="main" class="container">
       <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-          <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+          <picture>
+            <source srcset="img/200.webp" type="image/webp">
+            <img class="mr-3" src="img/200.png" alt="klik logo">
+        </picture>
         <div class="lh-100">
           <h1 class="mb-0 text-white lh-100">KLiK Hub</h1>
           <small>Spreading Ideas</small>
@@ -58,7 +61,10 @@
                     
                     echo '<a href="blog-page.php?id='.$row['blog_id'].'">
                         <div class="media text-muted pt-3">
-                            <img src="uploads/'.$row['blog_img'].'" alt="" class="mr-2 rounded div-img ">
+                            <picture>
+                                <source srcset="uploads/'.pathinfo($row['blog_img'], PATHINFO_FILENAME).'.webp" type="image/webp">
+                                <img src="uploads/'.$row['blog_img'].'" alt="Blog Image" class="mr-2 rounded div-img">
+                            </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
                               <strong class="d-block text-gray-dark">'.ucwords($row['blog_title']).'</strong></a>
                                   <br>'.substr($row['blog_content'],0,50).'...
@@ -123,7 +129,10 @@
                     
                     echo '<a href="event-page.php?id='.$row['event_id'].'">
                         <div class="media text-muted pt-3">
-                            <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img">
+                        <picture>
+                            <source srcset="uploads/'.pathinfo($row['event_image'], PATHINFO_FILENAME).'.webp" type="image/webp">
+                            <img src="uploads/'.$row['event_image'].'" alt="Event Image" class="mr-2 rounded div-img">
+                        </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                               <strong class="d-block text-gray-dark">'.ucwords($row['title']).'</strong></a>
                               '.date("F jS, Y", strtotime($row['event_date'])).'<br>
@@ -186,7 +195,10 @@
                     
                     echo '<a href="poll.php?poll='.$row['id'].'">
                         <div class="media text-muted pt-3">
-                            <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img">
+                        <picture>
+                            <source srcset="img/'.pathinfo('poll-cover.png', PATHINFO_FILENAME).'.webp" type="image/webp">
+                            <img src="img/poll-cover.png" alt="Poll Cover" class="mr-2 rounded div-img">
+                        </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                               <strong class="d-block text-gray-dark">'.ucwords($row['subject']).'</strong></a>
                               <span class="text-muted">Created By'.ucwords($row['uidUsers']).'</span><br>

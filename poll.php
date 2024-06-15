@@ -47,7 +47,11 @@
             
             <div class="col-sm-9" id="user-section">
               
-              <img class="event-cover" src="img/pollpage-cover.png">
+            <picture>
+                <source type="image/webp" srcset="img/pollpage-cover.webp">
+                <img class="event-cover" src="img/pollpage-cover.png" alt="Event cover">
+            </picture>
+
               
               <div class="px-5 my-5">
                   <div class="px-5">
@@ -94,7 +98,11 @@
                                 mysqli_stmt_execute($stmt);
                                 $result = mysqli_stmt_get_result($stmt);
                                 $row = mysqli_fetch_assoc($result);
-                                $voted = $row['poll_option_id'];
+                                $voted = null;
+                                //correction erreur vérification pour assurer que row n'est pas nul avant d'essayer d'y accéder
+                                if ($row) {
+                                    $voted = $row['poll_option_id'];
+                                }
 
                                 foreach($pollData['options'] as $opt){
 

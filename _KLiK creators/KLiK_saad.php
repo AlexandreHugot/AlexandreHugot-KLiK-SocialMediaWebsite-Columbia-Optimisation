@@ -65,7 +65,12 @@
 				<div class="col-md-1 col-lg-2"></div>
 				<div class="col-md-10 col-lg-8">
 					<div class="intro">
-                                            <div class="profile-img"><img src="img/saad.JPG" alt=""></div>
+                                            <div class="profile-img">
+												<picture>
+													<source type="image/webp" srcset="img/saad.webp">
+													<img src="img/saad.JPG" alt="image saad">
+												</picture>
+											</div>
                                             <h2><b>Muhammad Saad Hussaini</b></h2><br>
                                             
                                             <h4 class="font-yellow">DED</h4>
