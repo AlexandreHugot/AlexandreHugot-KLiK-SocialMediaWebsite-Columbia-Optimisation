@@ -66,10 +66,7 @@
                 while ($row = mysqli_fetch_assoc($result))
                 {
                     
-                    // Vérifiez si le sondage est fermé
-                    $pollLink = $row['locked'] == 1 ? 'polls.php' : 'poll.php?poll=' . $row['id'];
-                    // Génère le lien vers le sondage
-                    echo '<a href="' . $pollLink . '">
+                    echo '<a href="poll.php?poll='.$row['id'].'">
                         <div class="media text-muted pt-3">
                             <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img poll-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
