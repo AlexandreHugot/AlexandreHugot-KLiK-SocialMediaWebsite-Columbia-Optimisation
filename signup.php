@@ -10,6 +10,7 @@
     }
     include 'includes/HTML-head.php';
 ?>  
+
     </head>
     
     <body>
