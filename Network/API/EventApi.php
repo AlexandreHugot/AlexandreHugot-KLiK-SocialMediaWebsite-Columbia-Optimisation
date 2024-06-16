@@ -90,6 +90,35 @@ class EventApi {
             ));
         } 
     }
+
+    /**
+     * Allow to delete an event in the database
+     * @param int $id : the id of the event to delete
+     * @param string $title : the title of the event to delete
+     * @author Lakhdar Gibril
+     */
+    public function DeleteEvent(int $id = 0, string $title = "") : void {
+        $query = "delete from events where title = ?";
+        $this->database->ExecuteQuery($query,array($titre));
+        $query = "delete from event_info where event = ?";
+        $this->database->ExecuteQuery($query,array($id));
+    }
+
+    /**
+     * Allow to return a limited number of events from the database
+     * @param int $limit : the limit of events to return 
+     * @return array an array containing the data of the events
+     * @author Lakhdar Gibril
+     */
+    public function GetLimitEvent(int $limit = 5) : array {
+        $query = "select event_id, event_by, title, event_date, event_image
+                        from events
+                            where event_date > now()
+                                order by event_date asc
+                                    LIMIT ?";
+        $result = $this->database->ExecuteNonQuery($query, array($limit))->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 
 ?>
