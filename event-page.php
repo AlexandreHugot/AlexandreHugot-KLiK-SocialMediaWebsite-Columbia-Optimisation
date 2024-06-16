@@ -21,6 +21,7 @@
     } 
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?> 
 
         <link href="css/flipclock.css" rel="stylesheet">
@@ -118,9 +119,9 @@
                         <div class="text-center px-5">
 
                             <br><br><br>
-                            <h1><?php echo ucwords($row['title']) ?></h1>
+                            <h1><?php echo avoidHtmlInjections(ucwords($row['title'])) ?></h1>
                             <br>
-                            <h6 class="text-muted"><?php echo ucwords($row['e_headline']) ?></h6>
+                            <h6 class="text-muted"><?php echo avoidHtmlInjections(ucwords($row['e_headline'])) ?></h6>
                             <br><br><br>
 
                             <h3>Event Countdown</h3>
@@ -130,10 +131,10 @@
                             <div class="message"></div>
                             <br><br><br>
 
-                            <p class="text-justify"><?php echo $row['description'] ?></p>
+                            <p class="text-justify"><?php echo avoidHtmlInjections($row['description']) ?></p>
 
                             <br><br>
-                            <p class="text-muted text-left">Organized By: <?php echo ucwords($row['uidUsers']); ?></p>
+                            <p class="text-muted text-left">Organized By: <?php echo avoidHtmlInjections(ucwords($row['uidUsers'])); ?></p>
 
                         </div>
                     </div>

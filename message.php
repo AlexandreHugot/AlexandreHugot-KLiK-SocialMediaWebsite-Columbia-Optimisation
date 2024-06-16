@@ -12,6 +12,8 @@
     }  
     
     include 'includes/HTML-head.php';
+    include 'exceptions/ExceptionSelfMessage.php';
+    include 'includes/functions.php';
 ?> 
 
 
@@ -59,7 +61,7 @@
                                 </div>
                               <div class="chat_ib">
                                 <h5>
-                                    <?php echo ucwords($row['uidUsers']) ?> 
+                                    <?php echo avoidHtmlInjections(ucwords($row['uidUsers'])) ?> 
                                     <span class="chat_date">KLiK User</span>
                                 </h5>
                                 <p>Click on the User to start chatting</p>
@@ -70,6 +72,8 @@
                         <?php
                                
                             }
+
+                            mysqli_free_result($result);
                         }
 
                         ?>
@@ -103,7 +107,7 @@
 
                                     if ($resultCheck === 0)
                                     {
-                                        die("Invalid $_GET ID.");
+                                        ExceptionSelfMessage::check($_SESSION['userId'],$user_two);
                                     }
                                     else
                                     {
@@ -122,13 +126,13 @@
 
                                             mysqli_stmt_execute($stmt);
                                             $conver = mysqli_stmt_get_result($stmt);
-                                            mysqli_stmt_store_result($stmt);
 
                                             if (mysqli_num_rows($conver) > 0)
                                             {
 
                                                 $fetch = mysqli_fetch_assoc($conver);
                                                 $conversation_id = $fetch['id'];
+                                                mysqli_free_result($conver);
 
                                             }
                                             else

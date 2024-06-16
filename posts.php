@@ -2,6 +2,7 @@
 
     session_start();
     require 'includes/dbh.inc.php';
+    include 'includes/functions.php';
     
     define('TITLE',"Forum | KLiK");
     
@@ -86,11 +87,11 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Forums</a></li>
-                <li class="breadcrumb-item"><a href="#"><?php echo ucwords($forum['cat_name']); ?></a></li>
+                <li class="breadcrumb-item"><a href="#"><?php echo avoidHtmlInjections(ucwords($forum['cat_name'])); ?></a></li>
             </ol>
         </nav>
         <div class="card post-header text-center">
-            <h1><?php echo ucwords($forum['topic_subject']); ?></h1>
+            <h1><?php echo avoidHtmlInjections(ucwords($forum['topic_subject'])); ?></h1>
         </div>
     </div>
     <div class="col-sm-12">
@@ -179,8 +180,8 @@
                                     <div class="col-sm-3 user">
                                         <div class="text-center">
                                             <img src="uploads/'.$row['userImg'].'" class="img-fluid center-block user-img">
-                                            <h3>'.$row['uidUsers'].'</h3>
-                                            <small class="text-muted">'.$row['headline'].'</small><br><br>
+                                            <h3>'.avoidHtmlInjections($row['uidUsers']).'</h3>
+                                            <small class="text-muted">'.avoidHtmlInjections($row['headline']).'</small><br><br>
                                             <table style="width:100%">
                                                 <tr>
                                                     <th>Joined:</th>
@@ -195,9 +196,9 @@
                                                     <td>0</td>
                                                 </tr>
                                             </table>
-                                            <a href="profile.php?id='.$row['idUsers'].'">
+                                            <a href="profile.php?id='.avoidHtmlInjections($row['idUsers']).'">
                                                 <i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
-                                            <a href="message.php?id='.$row['idUsers'].'">
+                                            <a href="message.php?id='.avoidHtmlInjections($row['idUsers']).'">
                                                 <i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
@@ -219,7 +220,7 @@
                         echo '<i class="fa fa-chevron-up fa-3x" aria-hidden="true"></i></a>';
 
                         
-                        echo '<br><span class="vote-count">'.$row['post_votes'].'</span><br>';
+                        echo '<br><span class="vote-count">'.avoidHtmlInjections($row['post_votes']).'</span><br>';
                         
                         
                         if ($voted_d)

@@ -12,6 +12,7 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?>  
 
         <link rel="stylesheet" type="text/css" href="css/comp-creation.css">
@@ -85,7 +86,7 @@
                                         <?php 
                                             while($row = mysqli_fetch_assoc($result))
                                             {
-                                                echo '<option value='.$row['cat_id'].'>' . $row['cat_name'] . '</option>';
+                                                echo '<option value='.$row['cat_id'].'>' . avoidHtmlInjections($row['cat_name']) . '</option>';
                                             }
                                         ?>
                                         </select><br><br>

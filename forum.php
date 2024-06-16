@@ -12,6 +12,7 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?>  
 
 
@@ -63,11 +64,11 @@
                         <div class="media text-muted pt-3">
                             <img src="img/forum-cover.png" alt="" class="mr-2 rounded div-img ">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['cat_name']).'</strong></a>
-                                  <br>'.$row['cat_description'].'
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['cat_name'])).'</strong></a>
+                                  <br>'.avoidHtmlInjections($row['cat_description']).'
                             </p>
                             <span class="text-right text-primary"> 
-                                Forums: '.$row['forums'].' <i class="fa fa-book" aria-hidden="true"></i><br>';
+                                Forums: '.avoidHtmlInjections($row['forums']).' <i class="fa fa-book" aria-hidden="true"></i><br>';
                     
                     if ($_SESSION['userLevel'] == 1)
                     {
@@ -139,8 +140,8 @@
                         <div class="media text-muted pt-3">
                             <img src="uploads/'.$row['userImg'].'" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['topic_subject']).'</strong></a>
-                              <span class="text-warning">'.ucwords($row['uidUsers']).'</span><br>
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['topic_subject'])).'</strong></a>
+                              <span class="text-warning">'.avoidHtmlInjections(ucwords($row['uidUsers'])).'</span><br>
                               '.date("F jS, Y", strtotime($row['topic_date'])).'
                             </p>
                             <span class="text-primary text-center">
