@@ -13,6 +13,7 @@
     
     include 'includes/HTML-head.php';
     include 'exceptions/ExceptionSelfMessage.php';
+    include 'includes/functions.php';
 ?> 
 
 
