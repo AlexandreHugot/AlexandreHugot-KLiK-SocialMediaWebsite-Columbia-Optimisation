@@ -203,7 +203,6 @@
         
         
     <?php
-    ob_start();
         // Si le vote est soumis
         if(isset($_POST['voteSubmit'])){
             $voteData = array(
@@ -218,7 +217,6 @@
             // Actualise la page pour afficher les résultats mis à jour
             //header("Refresh:0");
         }
-        ob_end_flush();
     ?>
       
     <?php include 'includes/footer.php'; ?>
