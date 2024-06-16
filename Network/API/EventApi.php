@@ -1,5 +1,6 @@
 <?php
 require_once("./database.class.php");
+require_once('upload.inc.php');
 
 /**
  * Class which play the role of an API for the event data
