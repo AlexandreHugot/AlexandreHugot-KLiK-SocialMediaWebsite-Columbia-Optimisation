@@ -12,7 +12,7 @@
                 $user_form = $m['user_from'];
                 $user_to = $m['user_to'];
                 $message = $m['message'];
- 
+                
                 //get name and image of $user_form from `user` table
                 $user = mysqli_query($conn, "SELECT uidUsers, userImg FROM users WHERE idUsers = '$user_form'");
                 $user_fetch = mysqli_fetch_assoc($user);

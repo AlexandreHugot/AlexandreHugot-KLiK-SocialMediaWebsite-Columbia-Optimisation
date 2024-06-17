@@ -38,7 +38,7 @@ class Database {
      * @param array $params : an array of string containing the parameters.
      * @author Lakhdar Gibril
      */
-    protected function ExecuteQuery(string $query, array $params = []) : void {
+    public function ExecuteQuery(string $query, array $params = []) : void {
         $request = $this->base->prepare($query);
         $request->execute($params); 
     }
@@ -50,7 +50,7 @@ class Database {
      * @return PDOStatement the result of the query
      * @author Lakhdar Gibril
     */
-    protected function ExecuteNonQuery(string $query, array $params = []) : PDOStatement|false {
+    public function ExecuteNonQuery(string $query, array $params = []) : PDOStatement|false {
         $request = $this->base->prepare($query);
         if ($params === []) $request->execute();
         else $request->execute($params);
