@@ -204,7 +204,7 @@
                                     </div>
 
                                     <div class="col-sm-9 post-content">
-                                        <p>'.$row['post_content'].'</p>
+                                        <p>'.avoidHtmlInjections($row['post_content']).'</p>
                                             <div class="vote text-center">';
                         
                         if ( ($row['post_by']==$_SESSION['userId']) || ($_SESSION['userLevel'] == 1))
