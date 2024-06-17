@@ -86,7 +86,7 @@
     <div class="col-sm-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Forums</a></li>
+                <li class="breadcrumb-item"><a href="forum.php">Forums</a></li>
                 <li class="breadcrumb-item"><a href="#"><?php echo avoidHtmlInjections(ucwords($forum['cat_name'])); ?></a></li>
             </ol>
         </nav>
