@@ -3,7 +3,7 @@
 function resizeImage($source, $destination, $fileActualExt) {
     list($width, $height) = getimagesize($source);
 
-    // Redimensionne si les dimensions sont supérieures à 200px
+    // resizing if image is taller than 200px
     while ($width > 200 || $height > 200) {
         $width /= 2;
         $height /= 2;
@@ -79,7 +79,7 @@ if (!empty($_FILES['dp']['name']))
                 // resizing of image if it's necessary
                 resizeImage($fileDestination, $fileDestination, $fileActualExt);
 
-                // you have to activate GD extention in your php.ini
+                // you had to activate GD extention before in your php.ini
                 // convert an image in .Webp
                 // create a WebP copy
                 $webpName = uniqid('', true) . ".webp";
