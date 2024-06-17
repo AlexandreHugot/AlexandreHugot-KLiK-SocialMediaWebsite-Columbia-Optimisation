@@ -20,12 +20,18 @@ if (isset($_POST['update-profile']))
     
     if (empty($email))
     {
-        header("Location: ../edit-profile.php?error=emptyemail");
+        echo "<script type='text/javascript'>
+                        alert('Please enter an email.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
         exit();
     }
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
     {
-        header("Location: ../edit-profile.php?error=invalidmail");
+        echo "<script type='text/javascript'>
+                        alert('Email is invalid.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
         exit();
     }
     else
@@ -52,22 +58,42 @@ if (isset($_POST['update-profile']))
                 
                 if( (!empty($password) || !empty($passwordRepeat)) && empty($oldPassword))
                 {
-                    header("Location: ../edit-profile.php?error=emptyoldpwd");
+                    echo "<script type='text/javascript'>
+                        alert('Please enter your old password.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
+                    exit();
+                }
+                else if (!(preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password) && strlen($password) >= 8))
+                {
+                    echo "<script type='text/javascript'>
+                        alert('Your new password must contains at least 1 uppercase letter, 1 lower case letter, 1 number and 8 characters.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
                     exit();
                 }
                 if( empty($password) && empty($passwordRepeat) && !empty($oldPassword))
                 {
-                    header("Location: ../edit-profile.php?error=emptynewpwd");
+                    echo "<script type='text/javascript'>
+                        alert('Please enter your new password.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
                     exit();
                 }
                 if (!empty($password) && empty($passwordRepeat) && !empty($oldPassword))
                 {
-                    header("Location: ../edit-profile.php?error=emptyreppwd");
+                    echo "<script type='text/javascript'>
+                        alert('Please your new password.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
                     exit();
                 }
                 if (empty($password) && !empty($passwordRepeat) && !empty($oldPassword))
                 {
-                    header("Location: ../edit-profile.php?error=emptynewpwd");
+                    echo "<script type='text/javascript'>
+                        alert('Please your new password.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
                     exit();
                 }
                 if (!empty($password) && !empty($passwordRepeat) && !empty($oldPassword))
@@ -75,12 +101,18 @@ if (isset($_POST['update-profile']))
                     $pwdCheck = password_verify($oldPassword, $row['pwdUsers']);
                     if ($pwdCheck == false)
                     {
-                        header("Location: ../edit-profile.php?error=wrongpwd");
+                        echo "<script type='text/javascript'>
+                        alert('Your old password is incorrect.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
                         exit();
                     }
                     if ($oldPassword == $password)
                     {
-                        header("Location: ../edit-profile.php?error=samepwd");
+                        echo "<script type='text/javascript'>
+                        alert('Your new password must be different than your old password');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
                         exit();
                     }
                     if ($password !== $passwordRepeat)
@@ -153,7 +185,10 @@ if (isset($_POST['update-profile']))
                         $_SESSION['bio'] = $bio;
                         $_SESSION['userImg'] = $FileNameNew;
 
-                        header("Location: ../edit-profile.php?edit=success");
+                        echo "<script type='text/javascript'>
+                        alert('Your password has been changed succesfully.');
+                        window.location.href = '../edit-profile.php';
+                      </script>";
                         exit();
                     }
                 
