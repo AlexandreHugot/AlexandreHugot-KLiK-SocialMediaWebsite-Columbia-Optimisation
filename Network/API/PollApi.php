@@ -1,6 +1,6 @@
 <?php
 
-require_once("./database.class.php");
+require_once("Network/database.class.php");
 
 /**
  * Class which represent an API for the poll data
@@ -82,7 +82,7 @@ class PollApi {
             $identifier = $this->database->ExecuteNonQuery("select LAST_INSERT_ID() from polls where subject = ?", array($params['title']))->fetch(PDO::FETCH_ASSOC);
 
             /// Add all the options 
-            for (int $index = 0; $index < sizeof($options); $index++){
+            for ($index = 0; $index < sizeof($options); $index++){
                 $query = "insert into poll_options (poll_id, name, created, modified, status) 
                     values (?,?,?,?,?)";
                 $this->database->ExecuteQuery($query,array(
@@ -118,8 +118,8 @@ class PollApi {
                             where v.poll_id = p.id) as votes
                                 from polls p 
                                     order by votes desc
-                                        LIMIT ?";
-        $result = $this->database->ExecuteNonQuery($query,array($limit))->fetchAll(PDO::FETCH_ASSOC);
+                                        LIMIT 5";
+        $result = $this->database->ExecuteNonQuery($query)->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once("./database.class.php");
+require_once("Network/database.class.php");
 
 /**
  * Represent a base controller for the other controllers
@@ -11,7 +11,7 @@ class BaseController {
     /**
      * --------- Attributs -----------
      */
-    private Database $database;
+    protected Database $database;
 
     
     /**

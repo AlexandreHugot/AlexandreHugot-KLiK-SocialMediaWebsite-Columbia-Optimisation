@@ -1,7 +1,6 @@
 <?php
 
-require_once('./database.class.php');
-require 'upload.inc.php';
+require_once('Network/database.class.php');
 
 /**
  * Class UserApi which regroup all the SQL query found in the source code
@@ -40,8 +39,8 @@ class UserApi {
      */
     public function GetUser (array $params = []) : array {
         $query = "select * from users where uidUsers = ?";
-        $result = $this->ExecuteNonQuery($query,array(['mailuid']))->fetch(PDO::FETCH_ASSOC);
-        $passwordCheck = password_verify($params['pwd'],$result['pwdUsers'])
+        $result = $this->database->ExecuteNonQuery($query,array(['mailuid']))->fetch(PDO::FETCH_ASSOC);
+        $passwordCheck = password_verify($params['pwd'],$result['pwdUsers']);
         $data = [];
         if ($passwordCheck == true ){
             $data = array (
@@ -49,6 +48,7 @@ class UserApi {
                 'uidUsers' => $result['uidUsers'],
                 'userLevel' => $result['userLevel'],
                 'emailUsers' => $result['emailUsers'],
+                'pwdUsers' => $result['pwdUsers'],
                 'f_name' => $result['f_name'],
                 'l_name' => $result['l_name'],
                 'gender' => $result['gender'],
@@ -119,7 +119,6 @@ class UserApi {
         ));
     }
 
-
     /**
      * Allow to get a user profile picture and username from the database
      * @param int $id : identifier of the user.
@@ -128,7 +127,7 @@ class UserApi {
      */
     public function GetUserProfilePic(int $id) : array {
         $query = "select uidUsers, userImg from users WHERE idUsers = ?";
-        $result = $this->database->ExecuteNonQuery($query,array($id))->fetchAll(PDO::FETCH_ASSOC);
+        $result = $this->database->ExecuteNonQuery($query,array($id))->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 }

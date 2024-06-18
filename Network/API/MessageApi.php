@@ -1,6 +1,6 @@
 <?php
 
-require_once('./database.class.php');
+require_once('Network/database.class.php');
 
 /**
  * Class which allow to get, post or update data in the database related to messages

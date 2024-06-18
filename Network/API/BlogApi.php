@@ -1,7 +1,6 @@
 <?php
 
-require_once('./database.class.php');
-require_once('upload.inc.php');
+require_once('Network/database.class.php');
 
 /**
  * Class which act like an api to get the blog data from the database 
@@ -97,8 +96,8 @@ class BlogApi {
         $query = "select * from Blogs, users 
                     where blogs.blog_by = users.idUsers
                         order by blog_id desc, blog_votes asc
-                            LIMIT ?";
-        $result = $this->database->ExecuteNonQuery($query,array($limit))->fetchAll(PDO::FETCH_ASSOC);
+                            LIMIT 6";
+        $result = $this->database->ExecuteNonQuery($query)->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 }

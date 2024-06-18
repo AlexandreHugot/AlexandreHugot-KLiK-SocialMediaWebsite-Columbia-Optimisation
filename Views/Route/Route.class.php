@@ -44,10 +44,9 @@ abstract class Route {
 
     /**
      * Method which allow to get data, it act like a get methods
-     * @return array an array filled with mixed data
      * @author Lakhdar Gibril
      */
-    abstract function get() : array;
+    abstract function get();
 
     /**
      * Method which allow to post mixed data, it act like a post methods

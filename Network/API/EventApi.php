@@ -1,6 +1,5 @@
 <?php
-require_once("./database.class.php");
-require_once('upload.inc.php');
+require_once("Network/database.class.php");
 
 /**
  * Class which play the role of an API for the event data
@@ -116,8 +115,8 @@ class EventApi {
                         from events
                             where event_date > now()
                                 order by event_date asc
-                                    LIMIT ?";
-        $result = $this->database->ExecuteNonQuery($query, array($limit))->fetchAll(PDO::FETCH_ASSOC);
+                                    LIMIT 5";
+        $result = $this->database->ExecuteNonQuery($query)->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 }

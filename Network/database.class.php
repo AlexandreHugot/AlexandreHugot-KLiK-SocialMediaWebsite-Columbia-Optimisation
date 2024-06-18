@@ -7,7 +7,6 @@
 class Database {
 
     private PDO $base;
-    private bool $connected = false;
 
     /**
      * Getter getBase which allow to get our database 
@@ -25,11 +24,10 @@ class Database {
      * @param string $password : string which contain the password to access the database
      * @author Lakhdar Gibril
     */
-    public __construct(string $database, string $username, string $password){
+    public function __construct(string $database, string $username, string $password){
         
         // Connect to the database with a persistent connection.
         $this->base = new PDO($database,$username,$password, array(PDO::ATTR_PERSISTENT => true));
-        $this->connected = true;
     }
 
     /**

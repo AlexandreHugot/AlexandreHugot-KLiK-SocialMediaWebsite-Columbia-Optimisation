@@ -22,7 +22,7 @@
          * @param array $data : an array containing the specified data to put in the file
          */
         public function generate(array $data) : void {
-            $content = $this->generateFile($this->fichier, $data);
+            $content = $this->generateFile($this->file, $data);
             $view = $this->generateFile('views/gabarit.php',array('title' => $this->title, 'content' => $content));
             // Return the view in the browser
             echo $view;

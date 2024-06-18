@@ -1,7 +1,6 @@
 <?php
 
-require_once('./database.class.php');
-require 'upload.inc.php';
+require_once('Network/database.class.php');
 
 /**
  * Class PostApi which allow to act like an API for post data or related

@@ -1,6 +1,6 @@
 <?php
 
-require_once('./database.class.php');
+require_once('Network/database.class.php');
 
 /**
  * Class CategoryApi which allow to manipulate category data

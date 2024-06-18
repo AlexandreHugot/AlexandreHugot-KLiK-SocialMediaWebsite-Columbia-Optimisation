@@ -1,6 +1,6 @@
 <?php
 
-require_once('./database.class.php');
+require_once('Network/database.class.php');
 
 /**
  * Class which allow to get, post or update data in the database related to forums
@@ -40,8 +40,8 @@ class ForumApi {
                                 where topics.topic_by = users.idUsers
                                     and topics.topic_cat = categories.cat_id
                                         order by topic_id desc, upvotes asc 
-                                            LIMIT ?";
-        $result = $this->database->ExecuteNonQuery($query,array($limit))->fetchAll(PDO::FETCH_ASSOC);
+                                            LIMIT 6";
+        $result = $this->database->ExecuteNonQuery($query)->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 }
