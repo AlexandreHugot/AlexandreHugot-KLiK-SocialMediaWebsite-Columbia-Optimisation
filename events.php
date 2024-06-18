@@ -14,7 +14,7 @@
     include 'includes/HTML-head.php';
 ?>  
 
-	<link rel="stylesheet" type="text/css" href="css/list-page.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\events.min.css">
     </head>
     
     <body style="background: #f1f1f1">

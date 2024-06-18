@@ -20,8 +20,8 @@
     
     include 'includes/HTML-head.php';
 ?> 
-        <link href="outputCss\index1.css" rel="stylesheet">
-        <link href="outputCss\index2.css" rel="stylesheet">
+        <link href="outputCss\index1.min.css" rel="stylesheet">
+        <link href="outputCss\index2.min.css" rel="stylesheet">
         
     </head>
     

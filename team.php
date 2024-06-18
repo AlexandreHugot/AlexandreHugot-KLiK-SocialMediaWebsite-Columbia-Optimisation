@@ -15,7 +15,7 @@
 ?>  
 
 
-        <link href="css/creator-portfolio.min.css" rel="stylesheet">
+        <link href="outputCss\team.min.css" rel="stylesheet">
     </head>
     
     <body style="background: #f1f1f1">

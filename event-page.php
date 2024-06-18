@@ -23,7 +23,7 @@
     include 'includes/HTML-head.php';
 ?> 
 
-        <link href="css/flipclock.css" rel="stylesheet">
+        <link href="outputCss\event-page.min.css" rel="stylesheet">
     </head>
     
     <body>

@@ -14,7 +14,7 @@
 ?>  
 
 
-	<link rel="stylesheet" type="text/css" href="css/list-page.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\topics.min.css">
     </head>
     <body style="background: #f1f1f1">
 

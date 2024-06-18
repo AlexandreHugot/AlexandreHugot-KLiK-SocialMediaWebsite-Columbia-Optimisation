@@ -7,8 +7,8 @@
     include 'includes/email-server.php';
 ?>  
 
-	<link rel="stylesheet" type="text/css" href="css/contact-util.css">
-	<link rel="stylesheet" type="text/css" href="css/contact-main.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\contact-util.min.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\contact-main.min.css">
 </head>
     
 <body>

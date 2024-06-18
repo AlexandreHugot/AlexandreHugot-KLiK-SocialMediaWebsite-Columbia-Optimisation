@@ -15,7 +15,7 @@
 ?> 
 
 
-        <link href="css/inbox.css" rel="stylesheet">
+        <link href="outputCss\message.min.css" rel="stylesheet">
     </head>
     
     <body>
