@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Démarre le tampon de sortie
 
     session_start();
     // Inclut le fichier de connexion à la base de données
@@ -212,10 +213,10 @@
             );
             // Insère les données du vote dans la bdd
             $voteSubmit = $poll->vote($voteData);
-            //header("Location: ./poll.php?poll=".$pollid);
 
             // Actualise la page pour afficher les résultats mis à jour
-            //header("Refresh:0");
+            header("Location: ./poll.php?poll=".$pollid);
+            exit();
         }
     ?>
       
@@ -230,3 +231,5 @@
         <script src="js/scripts.js"></script>
     </body>
 </html>
+
+<?php ob_end_flush(); // Termine le tampon de sortie et envoie la sortie ?>
