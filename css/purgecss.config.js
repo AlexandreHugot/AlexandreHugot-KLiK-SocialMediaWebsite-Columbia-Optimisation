@@ -19,7 +19,8 @@ module.exports = {
         '../create-blog.php',
         '../contact.php',
         '../categories.php',
-        '../blogs.php'
+        '../blogs.php',
+        'includes/HTML-head.php'
     ],
     css: [
         './css/loader.css',
@@ -31,7 +32,8 @@ module.exports = {
         './css/comp-creation.css',
         './css/contact-util.css',
         './css/contact-main.css',
-        './css/bootstrap.css'
+        './css/bootstrap.css',
+        './css/bootstrap.min.css'
     ],
     keyframes: true,
     output: './css/purged/', 
