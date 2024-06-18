@@ -86,7 +86,7 @@
     <div class="col-sm-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Forums</a></li>
+                <li class="breadcrumb-item"><a href="forum.php">Forums</a></li>
                 <li class="breadcrumb-item"><a href="#"><?php echo avoidHtmlInjections(ucwords($forum['cat_name'])); ?></a></li>
             </ol>
         </nav>
@@ -204,7 +204,7 @@
                                     </div>
 
                                     <div class="col-sm-9 post-content">
-                                        <p>'.$row['post_content'].'</p>
+                                        <p>'.avoidHtmlInjections($row['post_content']).'</p>
                                             <div class="vote text-center">';
                         
                         if ( ($row['post_by']==$_SESSION['userId']) || ($_SESSION['userLevel'] == 1))
