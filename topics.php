@@ -2,6 +2,7 @@
 
     session_start();
     require 'includes/dbh.inc.php';
+    include 'includes/functions.php';
     define('TITLE',"Forums | KLiK");
     
     if(!isset($_SESSION['userId']))
@@ -14,7 +15,7 @@
 ?>  
 
 
-	<link rel="stylesheet" type="text/css" href="css/list-page.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\topics.min.css">
     </head>
     <body style="background: #f1f1f1">
 
@@ -61,7 +62,7 @@
                     if(isset($_GET['cat']))
                     {
                         echo '<a href="forum.php">Forums</a>
-                        / <span style="color: #709fea ">'.ucwords($category['cat_name'])."</span>";
+                        / <span style="color: #709fea ">'.avoidHtmlInjections(ucwords($category['cat_name']))."</span>";
                     }
                     else
                     {
@@ -106,8 +107,8 @@
                         <div class="media text-muted pt-3">
                             <img src="img/forum-cover.png" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['topic_subject']).'</strong></a>
-                              <span class="text-warning">'.ucwords($row['uidUsers']).'</span><br><br>
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['topic_subject'])).'</strong></a>
+                              <span class="text-warning">'.avoidHtmlInjections(ucwords($row['uidUsers'])).'</span><br><br>
                               '.date("F jS, Y", strtotime($row['topic_date'])).'
                             </p>
                             <span class="text-primary text-center">

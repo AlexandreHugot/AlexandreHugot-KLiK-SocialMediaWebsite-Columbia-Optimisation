@@ -13,10 +13,11 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
     
 ?>  
 
-        <link rel="stylesheet" type="text/css" href="css/list-page.css">
+        <link rel="stylesheet" type="text/css" href="outputCss\blogs.min.css">
     </head>
 
     <body style="background: #f1f1f1">
@@ -38,35 +39,69 @@
 
       <div class="row mb-2">
           
-                  <?php
-                        $sql = "SELECT * FROM blogs b INNER JOIN users u ON b.blog_by = u.idUsers";
-                        $result = mysqli_query($conn, $sql);
 
-                        if (!$result) {
-                            die('SQL error');
-                        } else {
-                        while ($row = mysqli_fetch_assoc($result))
-                        {
-                            echo '<div class="col-md-6">
-                                    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                      <div class="card-body d-flex flex-column align-items-start">
-                                        <strong class="d-inline-block mb-2 text-primary">
-                                            <i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['blog_votes'].'
-                                        </strong>
-                                        <h3 class="mb-0">
-                                          <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.substr($row['blog_title'],0,10).'...</a>
-                                        </h3>
-                                        <div class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['blog_date'])).'</div>
-                                        <p class="card-text mb-auto">'.substr($row['blog_content'],0,70).'...</p>
-                                        <a href="blog-page.php?id='.$row['blog_id'].'">Continue reading</a>
-                                      </div>
-                                      <picture>
-                                          <source type="image/webp" srcset="uploads/'.pathinfo($row['blog_img'], PATHINFO_FILENAME).'.webp">
-                                          <img class="card-img-right flex-auto d-none d-lg-block bloglist-cover" src="uploads/'.$row['blog_img'].'" alt="Card image cap">
-                                      </picture>
-                                    </div>
-                                  </div>';
-                        }
+                <?php
+                  /**
+                   * On essaie de se connecter à la base de donnée, si on y arrive pas on affiche un message d'erreur ------------------
+                   */
+                    try {
+                      
+                        $sql = "select * from Blogs
+                        where blogs.blog_by = ?";
+
+                        /**
+                         * On créer un statement pour pouvoir executer notre requête SQL
+                         */
+                        $statement = mysqli_stmt_init($conn);    
+                        mysqli_stmt_prepare($statement,$sql);
+
+                        /**
+                         * On récupère l'identifiant utilisateur de la session pour ensuite le passer en paramètre de la requête
+                         */
+                        $userid = $_SESSION['userId'];
+                        mysqli_stmt_bind_param($statement, "s", $userid);
+
+                        /**
+                         * On execute la requête et on récupère les résultats
+                         */
+                        mysqli_stmt_execute($statement);
+                        $result = mysqli_stmt_get_result($statement);
+                        
+                        /**
+                         * On récupère les résultats pour les affichers à l'écran
+                         */
+                        while ($row = mysqli_fetch_assoc($result)):
+                                echo '<div class="col-md-6">
+                                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                          <div class="card-body d-flex flex-column align-items-start">
+                                            <strong class="d-inline-block mb-2 text-primary">
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['blog_votes'].'
+                                            </strong>
+                                            <h3 class="mb-0">
+                                              <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.substr($row['blog_title'],0,10).'...</a>
+                                            </h3>
+                                            <div class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['blog_date'])).'</div>
+                                            <p class="card-text mb-auto">'.avoidHtmlInjections(substr($row['blog_content'],0,70)).'...</p>
+                                            <a href="blog-page.php?id='.$row['blog_id'].'">Continue reading</a>
+                                          </div>
+                                          <img class="card-img-right flex-auto d-none d-lg-block bloglist-cover" 
+                                                src="uploads/'.$row['blog_img'].'" alt="Card image cap">
+                                        </div>
+                                      </div>';
+                        endwhile;
+                    }
+                    catch (Exception $exception){
+                        echo 
+                        '<div class="col-md-6">
+                          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                            <div class="card-body d-flex flex-column align-items-start">
+                              <strong class="d-inline-block mb-2 text-primary">
+                                <p>'.$exception->getMessage().'</p>
+                              </strong>
+                            </div>
+                          </div>
+                        </div>';
+
                     }
                 ?>        
           

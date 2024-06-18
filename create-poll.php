@@ -13,7 +13,7 @@
     include 'includes/HTML-head.php';
 ?>  
 
-        <link rel="stylesheet" type="text/css" href="css/comp-creation.css">
+        <link rel="stylesheet" type="text/css" href="outputCss\create-poll.min.css">
 </head>
 <body>
 
@@ -98,7 +98,7 @@
 					</div>
                                         
                                         <div class="text-center">
-                                        <br><br><a class="btn btn-light btn-lg btn-block" href="poll-view.php">
+                                        <br><br><a class="btn btn-light btn-lg btn-block" href="polls.php">
                                             View Polls</a>
                                         </div>
                                         

@@ -18,10 +18,10 @@
                     <h4 class='card-title'>
                     <?php echo ucwords($_SESSION['userUid']); ?>
                         <small class="text-muted">
-                            <?php echo ucwords($_SESSION['f_name']." ".$_SESSION['l_name']); ?>
+                            <?php echo ucwords(avoidHtmlInjections($_SESSION['f_name']))." ".avoidHtmlInjections($_SESSION['l_name']); ?>
                         </small>
                         <br>
-                        <small class="text-muted"><?php echo $_SESSION['headline']; ?></small>
+                        <small class="text-muted"><?php echo avoidHtmlInjections($_SESSION['headline']); ?></small>
                         <br><br><br>
                     </h4>
                 </div>

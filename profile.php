@@ -2,6 +2,7 @@
 
     session_start();
     require 'includes/dbh.inc.php';
+    include 'includes/functions.php';
     
     define('TITLE',"Profile | KLiK");
     
@@ -72,9 +73,9 @@
                     }
               ?>
               
-              <h2><?php echo ucwords($user['uidUsers']); ?></h2>
-              <h6><?php echo ucwords($user['f_name']) . " " . ucwords($user['l_name']); ?></h6>
-              <h6><?php echo '<small class="text-muted">'.$user['emailUsers'].'</small>'; ?></h6>
+              <h2><?php echo avoidHtmlInjections(ucwords($user['uidUsers'])); ?></h2>
+              <h6><?php echo avoidHtmlInjections(ucwords($user['f_name']) . " " . ucwords($user['l_name'])); ?></h6>
+              <h6><?php echo '<small class="text-muted">'.avoidHtmlInjections($user['emailUsers']).'</small>'; ?></h6>
               
               <?php 
                 if ($user['gender'] == 'm')
@@ -87,10 +88,10 @@
                 }
                 ?>
               
-              <br><small><?php echo $user['headline']; ?></small>
+              <br><small><?php echo avoidHtmlInjections($user['headline']); ?></small>
               <br><br>
               <div class="profile-bio">
-                  <small><?php echo $user['bio'];?></small>
+                  <small><?php echo avoidHtmlInjections($user['bio']);?></small>
               </div>
               
               
@@ -142,7 +143,7 @@
                                                 <img class="card-img-top" src="uploads/'.$row['blog_img'].'" alt="Card image cap">
                                             </picture>
                                             <div class="card-block p-2">
-                                              <p class="card-title">'.ucwords($row['blog_title']).'</p>
+                                              <p class="card-title">'.avoidHtmlInjections(ucwords($row['blog_title'])).'</p>
                                              <p class="card-text"><small class="text-muted">'
                                              .date("F jS, Y", strtotime($row['blog_date'])).'</small></p>
                                             </div>
@@ -204,7 +205,7 @@
                                                 <img class="card-img-top" src="img/forum-cover.png" alt="Card image cap">
                                             </picture>
                                             <div class="card-block p-2">
-                                              <p class="card-title">'.ucwords($row['topic_subject']).'</p>
+                                              <p class="card-title">'.avoidHtmlInjections(ucwords($row['topic_subject'])).'</p>
                                              <p class="card-text"><small class="text-muted">'
                                              .date("F jS, Y", strtotime($row['topic_date'])).'</small></p>
                                             </div>
@@ -270,7 +271,7 @@
                                                 <img class="card-img-top" src="img/poll-cover.png" alt="Card image cap">
                                             </picture>
                                             <div class="card-block p-2">
-                                              <p class="card-title">'.ucwords($row['subject']).'</p>
+                                              <p class="card-title">'.avoidHtmlInjections(ucwords($row['subject'])).'</p>
                                              <p class="card-text"><small class="text-muted">'
                                              .date("F jS, Y", strtotime($row['created'])).'</small></p>
                                             </div>

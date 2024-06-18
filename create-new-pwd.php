@@ -8,7 +8,7 @@
     include 'includes/HTML-head.php';
 ?>  
 
-            <link rel="stylesheet" type="text/css" href="css/list-page.css">
+            <link rel="stylesheet" type="text/css" href="outputCss\create-new-pwd.min.css">
     </head>
     
     <body style="background: url('img/cover2.png');">

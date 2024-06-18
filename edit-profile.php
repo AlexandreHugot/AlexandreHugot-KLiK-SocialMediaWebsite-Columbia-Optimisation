@@ -12,6 +12,7 @@
     }
     
     include 'includes/HTML-head.php';  
+    include 'includes/functions.php';
 ?> 
 </head>
 <body>
@@ -57,12 +58,12 @@
                     <div class="form-row">
                       <div class="col">
                         <input type="text" class="form-control" name="f-name" placeholder="First Name"
-                               value="<?php echo $_SESSION['f_name'] ?>" >
+                               value="<?php echo avoidHtmlInjections($_SESSION['f_name']) ?>" >
                         <small id="emailHelp" class="form-text text-muted">First Name</small>
                       </div>
                       <div class="col">
                         <input type="text" class="form-control" name="l-name" placeholder="Last Name" 
-                               value="<?php echo $_SESSION['l_name'] ?>" >
+                               value="<?php echo avoidHtmlInjections($_SESSION['l_name']) ?>" >
                         <small id="emailHelp" class="form-text text-muted">Last Name</small>
                       </div>
                     </div>
@@ -70,7 +71,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" name="email" placeholder="email" 
-                               value="<?php echo $_SESSION['emailUsers'] ?>" >
+                               value="<?php echo avoidHtmlInjections($_SESSION['emailUsers']) ?>" >
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                   
@@ -94,12 +95,12 @@
                     <div class="form-group">
                         <label for="headline">Profile Headline</label>
                         <input class="form-control" type="text" id="headline" name="headline" 
-                               placeholder="Your Profile Headline" value='<?php echo $_SESSION['headline']; ?>'><br>
+                               placeholder="Your Profile Headline" value='<?php echo avoidHtmlInjections($_SESSION['headline']); ?>'><br>
                         
                         <label for="edit-bio">Profile Bio</label>
                         <textarea class="form-control" id="edit-bio" rows="10" name="bio" maxlength="5000"
                             placeholder="What you want to tell people about yourself" 
-                            ><?php echo $_SESSION['bio']; ?></textarea>
+                            ><?php echo avoidHtmlInjections($_SESSION['bio']); ?></textarea>
                     </div>
                   
                   <hr>

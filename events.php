@@ -12,9 +12,10 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?>  
 
-	<link rel="stylesheet" type="text/css" href="css/list-page.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\events.min.css">
     </head>
     
     <body style="background: #f1f1f1">
@@ -74,7 +75,7 @@
                                 <img src="uploads/'.$row['event_image'].'" alt="'.$row['event_image'].'" class="mr-2 rounded div-img">
                             </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['title']).'</strong></a>
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['title'])).'</strong></a>
                               '.date("F jS, Y", strtotime($row['event_date'])).'<br>
                               <span class="text-primary" >'.$diff.'</span>
                             </p>

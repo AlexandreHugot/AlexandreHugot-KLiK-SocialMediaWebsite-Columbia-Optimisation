@@ -20,7 +20,8 @@
         exit();
     }
     
-    include 'includes/HTML-head.php';   
+    include 'includes/HTML-head.php';
+    include 'includes/functions.php';   
 ?> 
 
 </head>
@@ -77,7 +78,7 @@
                                     mysqli_stmt_execute($stmt);
                                     $result2 = mysqli_stmt_get_result($stmt);
 
-                                    echo "<h4 class='text-muted'>".ucwords($row['name'])."</h4><br><br>";
+                                    echo "<h4 class='text-muted'>".avoidHtmlInjections(ucwords($row['name']))."</h4><br><br>";
                                     
                                     $row2 = mysqli_fetch_assoc($result2);
                                     if (empty($row2)) {
@@ -92,6 +93,7 @@
                                     }                                    
                                     do
                                     {
+
                                         echo '
                                         <a href="profile.php?id='.$row2['idUsers'].'">
                                             <h6>
@@ -101,9 +103,10 @@
                                                 </picture>
                                                 '.ucwords($row2['uidUsers']).'
                                             </h6>
-                                        </a><br>';
+                                        '.avoidHtmlInjections(ucwords($row2['uidUsers'])).'</a><br>';
                                     }
                                     while ($row2 = mysqli_fetch_assoc($result2));
+
                                     
                                     echo '<br><hr><br>';
                                 }
