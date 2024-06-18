@@ -16,6 +16,7 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?>  
 
 	<link rel="stylesheet" type="text/css" href="css/list-page.css">

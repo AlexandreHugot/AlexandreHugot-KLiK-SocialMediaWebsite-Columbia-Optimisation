@@ -21,6 +21,7 @@
     } 
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?> 
 
         <link href="css/flipclock.css" rel="stylesheet">
@@ -42,40 +43,71 @@
 
                     <?php
 
-                        $sql = "select e.event_date, e.event_id, e.event_by, e.title, e.event_image, i.description,
-                                    u.uidUsers, u.userImg, i.headline as e_headline
-                                from events e, event_info i, users u
-                                where e.event_id = ? 
-                                and e.event_by = u.idUsers
-                                and e.event_id = i.event";
+                        try{
+                                                
+                            /**
+                             * On essaie de se connecter à la base de donnée, si on y arrive pas on affiche un message d'erreur à l'écran ------------------
+                             */
+                            $sql = "select e.event_date, e.event_id, e.event_by, e.title, e.event_image, i.description,
+                                        u.uidUsers, u.userImg, i.headline as e_headline
+                                    from events e, event_info i, users u
+                                    where e.event_id = ? 
+                                    and e.event_by = u.idUsers
+                                    and e.event_id = i.event";
+                            
+                            /**
+                             * On créer un statement pour pouvoir executer notre requête SQL en la préparant
+                             */
+                            $statement = mysqli_stmt_init($conn);   
+                            mysqli_stmt_prepare($statement,$sql); 
 
-                        $stmt = mysqli_stmt_init($conn);    
+                            
+                            /**
+                             * On ajoute les paramètres à la requête équivalent au "?" 
+                             */
+                            mysqli_stmt_bind_param($statement, "s", $eventId);
 
-                        if (!mysqli_stmt_prepare($stmt, $sql))
-                        {
-                            die('SQL error');
-                        }
-                        else
-                        {
-                            mysqli_stmt_bind_param($stmt, "s", $eventId);
-                            mysqli_stmt_execute($stmt);
-                            $result = mysqli_stmt_get_result($stmt);
-
-                            $row = mysqli_fetch_assoc($result);
-
-                            $date1 = date_create(date("Y-m-d"));
+                            /**
+                             * On exécute la requête et on récupère les résultats
+                             */
+                            mysqli_stmt_execute($statement);
+                            $result = mysqli_stmt_get_result($statement);
+                            $row = mysqli_fetch_assoc($result); // Le fetch_assoc permet d'avoir les données des autres tables à partir des clés étrangères.
+                            
+                            /**
+                             * On créer les dates à partir des données reçus par la requête.
+                             */
+                            
+                            $date1 = date_create(date("Y-m-d H:i:s",time())); //Format DATETIME DE MySQL
+                            var_dump($date1);
                             $date2 = date_create($row['event_date']);
+                            var_dump($date2);
+                            
+                            /**
+                             * Correction de l'appel date_diff, le calcul des deux dates était incorrect par conséquent avant il s'agissait de : date debut - date fin.
+                             * On procède ensuite au décompte du timer pour l'afficher
+                             */
+                            $diff = date_diff($date2,$date1);
 
-                            $diff=date_diff($date1,$date2, absolute);
+                            var_dump($diff);
 
                             $diff_sec = $diff->format('%r').( 
-                                            ($diff->s)+ 
-                                            (60*($diff->i))+ 
-                                            (60*60*($diff->h))+ 
-                                            (24*60*60*($diff->d))+ 
-                                            (30*24*60*60*($diff->m))+ 
-                                            (365*24*60*60*($diff->y)) 
-                                            );      
+                                                ($diff->s)+ 
+                                                (60*($diff->i))+ 
+                                                (60*60*($diff->h))+ 
+                                                (24*60*60*($diff->d))+ 
+                                                (30*24*60*60*($diff->m))+ 
+                                                (365*24*60*60*($diff->y)) 
+                            );      
+                        }
+                        catch (Exception $exception){
+                            echo '<div class="px-5">
+                                    <div class="text-center px-5">
+                                        <br><br><br>
+                                        <h1>Oops ! the event could not load</h1>
+                                    </div>
+                                  </div>
+                            ';
                         }
                     ?>
 
@@ -87,9 +119,9 @@
                         <div class="text-center px-5">
 
                             <br><br><br>
-                            <h1><?php echo ucwords($row['title']) ?></h1>
+                            <h1><?php echo avoidHtmlInjections(ucwords($row['title'])) ?></h1>
                             <br>
-                            <h6 class="text-muted"><?php echo ucwords($row['e_headline']) ?></h6>
+                            <h6 class="text-muted"><?php echo avoidHtmlInjections(ucwords($row['e_headline'])) ?></h6>
                             <br><br><br>
 
                             <h3>Event Countdown</h3>
@@ -99,10 +131,10 @@
                             <div class="message"></div>
                             <br><br><br>
 
-                            <p class="text-justify"><?php echo $row['description'] ?></p>
+                            <p class="text-justify"><?php echo avoidHtmlInjections($row['description']) ?></p>
 
                             <br><br>
-                            <p class="text-muted text-left">Organized By: <?php echo ucwords($row['uidUsers']); ?></p>
+                            <p class="text-muted text-left">Organized By: <?php echo avoidHtmlInjections(ucwords($row['uidUsers'])); ?></p>
 
                         </div>
                     </div>

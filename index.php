@@ -19,6 +19,7 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?> 
         <link href="css/list-page.css" rel="stylesheet">
         <link href="css/loader.css" rel="stylesheet">
@@ -130,10 +131,10 @@
                                                             </strong>
                                                             <h6 class="mb-0">
                                                               <a class="text-dark" href="posts.php?topic='.$row['topic_id'].'">'
-                                                                .substr(ucwords($row['topic_subject']),0,15).'...</a>
+                                                                .avoidHtmlInjections(substr(ucwords($row['topic_subject']),0,15)).'...</a>
                                                             </h6>
                                                             <small class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['topic_date'])).'</small>
-                                                            <small class="card-text mb-auto">Created By: '.ucwords($row['uidUsers']).'</small>
+                                                            <small class="card-text mb-auto">Created By: '.avoidHtmlInjections(ucwords($row['uidUsers'])).'</small>
                                                             <a href="posts.php?topic='.$row['topic_id'].'">Go To Forum</a>
                                                           </div>
 
@@ -185,10 +186,10 @@
                                                                 <i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['blog_votes'].'
                                                             </strong>
                                                             <h6 class="mb-0">
-                                                              <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.substr($row['blog_title'],0,10).'...</a>
+                                                              <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.avoidHtmlInjections(substr($row['blog_title'],0,10)).'...</a>
                                                             </h6>
                                                             <small class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['blog_date'])).'</small>
-                                                            <small class="card-text mb-auto">'.substr($row['blog_content'],0,40).'...</small>
+                                                            <small class="card-text mb-auto">'.avoidHtmlInjections(substr($row['blog_content'],0,40)).'...</small>
                                                             <a href="blog-page.php?id='.$row['blog_id'].'">Continue reading</a>
                                                           </div>
                                                           <a href="blog-page.php?id='.$row['blog_id'].'">
@@ -246,7 +247,7 @@
                                                 <div class="media text-muted pt-3">
                                                     <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img poll-img">
                                                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
-                                                      <strong class="d-block text-gray-dark">'.ucwords($row['subject']).'</strong></a>
+                                                      <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['subject'])).'</strong></a>
                                                           '.date("F jS, Y", strtotime($row['created'])).'
                                                            <br><br>
                                                            <span class="text-primary" >
@@ -313,7 +314,7 @@
                                                 <div class="media text-muted pt-3">
                                                     <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img poll-img">
                                                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                                      <strong class="d-block text-gray-dark">'.ucwords($row['title']).'</strong></a>
+                                                      <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['title'])).'</strong></a>
                                                       '.date("F jS, Y", strtotime($row['event_date'])).'<br><br>
                                                       <span class="text-primary" >'.$diff.' days remaining </span>
                                                     </p>
@@ -374,7 +375,7 @@
             var myVar;
 
             function pageLoad() {
-              myVar = setTimeout(showPage, 4000);
+              myVar = setTimeout(showPage, 0);
             }
 
             function showPage() {

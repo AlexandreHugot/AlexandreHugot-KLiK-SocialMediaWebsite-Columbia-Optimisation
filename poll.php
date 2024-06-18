@@ -4,6 +4,8 @@ ob_start(); // Démarre le tampon de sortie
     session_start();
     // Inclut le fichier de connexion à la base de données
     require 'includes/dbh.inc.php';
+    include 'includes/functions.php';
+
     //Définit le titre de la page
     define('TITLE',"Poll | KLiK");
     //vérifie si l'utilisateur est déjà connécté
@@ -56,12 +58,14 @@ ob_start(); // Démarre le tampon de sortie
               <div class="px-5 my-5">
                   <div class="px-5">
                       
+
                     <!-- Formulaire de vote -->
                     <form action="" method="post" name="pollFrm">
+        
+                        <h1><?php echo avoidHtmlInjections($pollData['poll']['subject']); ?></h1>
 
-                        <h1><?php echo $pollData['poll']['subject']; ?></h1>
                         <br>
-                        <p class="text-muted"><?php echo $pollData['poll']['poll_desc']; ?></p>
+                        <p class="text-muted"><?php echo avoidHtmlInjections($pollData['poll']['poll_desc']); ?></p>
                         <br><br>
                         
                             
@@ -121,7 +125,7 @@ ob_start(); // Démarre le tampon de sortie
                                     }
                                     
                                     echo            '> 
-                                                    <label for="option'.$opt['id'].'">'.$opt['name'].'</label>
+                                                    <label for="option'.$opt['id'].'">'.avoidHtmlInjections($opt['name']).'</label>
                                             </div>';
                                 }
                                 
@@ -166,8 +170,10 @@ ob_start(); // Démarre le tampon de sortie
                             ?>
 
                             <div class="line-progress margin-b-20" 
-                                    data-prog-percent="<?php echo $votePercent/100; ?>"><div></div>
-                                <p class="progress-title"><?php echo $opt." - <b>".$vote.' user(s)'; ?></b></p>
+                                 
+                                 data-prog-percent="<?php echo $votePercent/100; ?>"><div></div>
+                                <p class="progress-title"><?php echo avoidHtmlInjections($opt)." - <b>".$vote.' user(s)'; ?></b></p>
+                      
                             </div><br>    
 
                             <?php
@@ -178,16 +184,20 @@ ob_start(); // Démarre le tampon de sortie
                             ?>
                             
                             <br><br>
-                            <a href="./poll-voters.php?poll=<?php echo $_GET['poll']; ?>" 
-                                class="btn btn-secondary">View All Votes</a> 
-                            <a href="./polls.php" class="btn btn-secondary">View All Polls</a>
+
+                            <a href="./poll-voters.php?poll=<?php echo avoidHtmlInjections($_GET['poll']); ?>" 
+                               class="btn btn-secondary">View All Votes</a> 
+                            <a href="./poll-view.php" class="btn btn-secondary">View All Polls</a>
+
                             
                             <?php
                                 }
                             ?>
 
                         <!-- Champ caché pour envoyer l'ID du sondage -->
-                        <input type="hidden" name="pollID" value="<?php echo $pollData['poll']['id']; ?>">
+
+                        <input type="hidden" name="pollID" value="<?php echo avoidHtmlInjections($pollData['poll']['id']); ?>">
+
 
                     </form>
                   </div>
