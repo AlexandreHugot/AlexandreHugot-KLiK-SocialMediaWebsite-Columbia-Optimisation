@@ -63,7 +63,9 @@
               
               <img class="blog-cover" src="uploads/<?php echo $row['blog_img']; ?>">
               
+              <a href="profile.php?id=<?php echo $row["blog_by"];?>">
               <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>">
+                </a>
               
               <div class="px-5">
                   
