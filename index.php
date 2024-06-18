@@ -178,7 +178,7 @@
 
                                             while ($row = mysqli_fetch_assoc($result))
                                             {
-                                                echo '<div class="col">
+                                                echo '<div class="col-md-6">
                                                         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                                                           <div class="card-body d-flex flex-column align-items-start">
                                                             <strong class="d-inline-block mb-2 text-primary">
