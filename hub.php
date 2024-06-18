@@ -12,6 +12,7 @@
     
     include 'includes/HTML-head.php';
     include 'includes/navbar.php';
+    include 'includes/functions.php';
     
 ?>  
 
@@ -36,7 +37,7 @@
         
         <?php
 
-            $sql = "select blog_id, blog_img, blog_date, blog_votes, blog_title, blog_content, uidUsers
+            $sql = "select blog_id, blog_img, blog_date, blog_votes, blog_title, blog_content, blog_by, uidUsers
                     from blogs, users
                     where blogs.blog_by = users.idUsers
                     order by blog_votes desc
@@ -60,8 +61,8 @@
                         <div class="media text-muted pt-3">
                             <img src="uploads/'.$row['blog_img'].'" alt="" class="mr-2 rounded div-img ">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['blog_title']).'</strong></a>
-                                  <br>'.substr($row['blog_content'],0,50).'...
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['blog_title'])).'</strong></a>
+                                  <br>'.avoidHtmlInjections(substr($row['blog_content'],0,50)).'...
                             </p>
                             <span class="text-right text-primary"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
                                 '.$row['blog_votes'].'<br>';
@@ -125,7 +126,7 @@
                         <div class="media text-muted pt-3">
                             <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['title']).'</strong></a>
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['title'])).'</strong></a>
                               '.date("F jS, Y", strtotime($row['event_date'])).'<br>
                               <span class="text-primary" >'.$diff.' days remaining </span>
                             </p>
@@ -188,9 +189,9 @@
                         <div class="media text-muted pt-3">
                             <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['subject']).'</strong></a>
-                              <span class="text-muted">Created By'.ucwords($row['uidUsers']).'</span><br>
-                                  <span class="text-primary">'.$row['voters'].' user(s) voted</span>
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['subject'])).'</strong></a>
+                              <span class="text-muted">Created By'.avoidHtmlInjections(ucwords($row['uidUsers'])).'</span><br>
+                                  <span class="text-primary">'.avoidHtmlInjections($row['voters']).' user(s) voted</span>
                             </p>
                             </div>';
                     
