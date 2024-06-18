@@ -20,7 +20,8 @@
         exit();
     }
     
-    include 'includes/HTML-head.php';   
+    include 'includes/HTML-head.php';
+    include 'includes/functions.php';   
 ?> 
 
 </head>
@@ -39,8 +40,11 @@
           <div class="col-sm-9" id="user-section">
               
               
-              <img class="event-cover" src="img/pollpage-cover.png">
-              
+            <picture>
+                <source srcset="img/pollpage-cover.webp" type="image/webp">
+                <img class="event-cover" src="img/pollpage-cover.png" alt="Event Cover">
+            </picture>
+
               
               <div class="px-5 my-5">
                   <div class="px-5">
@@ -74,22 +78,35 @@
                                     mysqli_stmt_execute($stmt);
                                     $result2 = mysqli_stmt_get_result($stmt);
 
-                                    echo "<h4 class='text-muted'>".ucwords($row['name'])."</h4><br><br>";
+                                    echo "<h4 class='text-muted'>".avoidHtmlInjections(ucwords($row['name']))."</h4><br><br>";
                                     
                                     $row2 = mysqli_fetch_assoc($result2);
-                                    if(empty($row2))
-                                    {
-                                        echo '<img class="empty-img" src="img/empty.png">
-                                                <br><br><hr><br>';
+                                    if (empty($row2)) {
+                                        echo '
+                                        <picture>
+                                            <source srcset="img/empty.webp" type="image/webp">
+                                            <img class="empty-img" src="img/empty.png" alt="Empty Image">
+                                        </picture>
+                                        <br><br><hr><br>
+                                        ';
                                         continue;
-                                    }
+                                    }                                    
                                     do
                                     {
-                                        echo '<a href="profile.php?id='.$row2['idUsers'].'">
-                                            <h6><img class="voter-avatar" src="uploads/'.$row2['userImg'].'" > 
-                                                '.ucwords($row2['uidUsers']).'<a>
-                                            </h6><br>';
-                                    }while ($row2 = mysqli_fetch_assoc($result2));
+
+                                        echo '
+                                        <a href="profile.php?id='.$row2['idUsers'].'">
+                                            <h6>
+                                                <picture>
+                                                    <source srcset="uploads/'.pathinfo($row2['userImg'], PATHINFO_FILENAME).'.webp" type="image/webp">
+                                                    <img class="voter-avatar" src="uploads/'.$row2['userImg'].'" alt="'.ucwords($row2['uidUsers']).'">
+                                                </picture>
+                                                '.ucwords($row2['uidUsers']).'
+                                            </h6>
+                                        '.avoidHtmlInjections(ucwords($row2['uidUsers'])).'</a><br>';
+                                    }
+                                    while ($row2 = mysqli_fetch_assoc($result2));
+
                                     
                                     echo '<br><hr><br>';
                                 }

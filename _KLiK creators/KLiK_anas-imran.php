@@ -65,7 +65,12 @@
 				<div class="col-md-1 col-lg-2"></div>
 				<div class="col-md-10 col-lg-8">
 					<div class="intro">
-                                            <div class="profile-img"><img src="img/anas-imran.JPG" alt=""></div>
+                                            <div class="profile-img">
+												<picture>
+													<source type="image/webp" srcset="img/anas-imran.webp">
+													<img src="img/anas-imran.JPG" alt="imran image">
+												</picture>
+											</div>
                                             <h2><b>Anas Tasadduq</b></h2><br>
                                             
                                             <h4 class="font-yellow">What goes up, must come down</h4>
@@ -247,7 +252,10 @@
                       <p class="mb-0 text-white">A hand-coded PHP Social Media Website</p>
                     </span>
                   </span>
-                  <img class="img-fluid" src="img/klik.png" alt="">
+                  	<picture>
+						<source type="image/webp" srcset="img/klik.webp">
+						<img class="img-fluid" src="img/klik.png" alt="">
+					</picture>
                 </a>
               </div>
             </div>

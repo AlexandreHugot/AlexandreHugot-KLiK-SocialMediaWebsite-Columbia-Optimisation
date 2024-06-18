@@ -74,11 +74,11 @@
                                                 
                                             <br><br>
 						<ul class="social-icons">
-							<li><a href="https://github.com/UbaidAsim">
+							<li><a href="https://github.com/UbaidAsim" target="_blank">
                                                                 <i class="fa fa-github"></i></a></li>
-							<li><a href="https://web.facebook.com/ubaid.asim7">
+							<li><a href="https://www.linkedin.com/in/muhammadubaidullahasim/" target="_blank">
                                                                 <i class="fa fa-linkedin"></i></a></li>
-							<li><a href="https://www.linkedin.com/in/muhammadubaidullahasim/">
+							<li><a href="https://web.facebook.com/ubaid.asim7" target="_blank">
                                                                 <i class="fa fa-facebook"></i></a></li>
 						</ul>
 					</div><!-- intro -->

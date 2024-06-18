@@ -19,15 +19,20 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?> 
-        <link href="css/list-page.css" rel="stylesheet">
-        <link href="css/loader.css" rel="stylesheet">
+        <link href="outputCss\index1.min.css" rel="stylesheet">
+        <link href="outputCss\index2.min.css" rel="stylesheet">
+        
     </head>
     
     <body onload="pageLoad()">
         
         <div id="loader-wrapper">
-        <img src='img/500.png' id='loader-logo'>
+        <picture>
+            <source type="image/webp" srcset="img/500.webp">
+            <img id='loader-logo' src="img/500.png" alt="Klik logo" width="300" height="auto">
+        </picture>
             <div class="loader">
                 <div class="loader__bar"></div>
                 <div class="loader__bar"></div>
@@ -53,7 +58,10 @@
                     <div class="col-sm-7" >
 
                         <div class="text-center p-3">
-                            <img src="img/200.png">
+                            <picture>
+                                <source type="image/webp" srcset="img/200.webp">
+                                <img  src="img/200.png" alt="Klik logo" >
+                            </picture>
                             <h2 class='text-muted'>DASHBOARD</h2>
                             <br>
                         </div>
@@ -130,10 +138,10 @@
                                                             </strong>
                                                             <h6 class="mb-0">
                                                               <a class="text-dark" href="posts.php?topic='.$row['topic_id'].'">'
-                                                                .substr(ucwords($row['topic_subject']),0,15).'...</a>
+                                                                .avoidHtmlInjections(substr(ucwords($row['topic_subject']),0,15)).'...</a>
                                                             </h6>
                                                             <small class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['topic_date'])).'</small>
-                                                            <small class="card-text mb-auto">Created By: '.ucwords($row['uidUsers']).'</small>
+                                                            <small class="card-text mb-auto">Created By: '.avoidHtmlInjections(ucwords($row['uidUsers'])).'</small>
                                                             <a href="posts.php?topic='.$row['topic_id'].'">Go To Forum</a>
                                                           </div>
 
@@ -151,7 +159,10 @@
                             <div class="tab-pane fade" id="blog" role="blog" aria-labelledby="blog-tab">
 
                                 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-                                    <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+                                <picture>
+                                    <source srcset="img/200.webp" type="image/webp">
+                                    <img class="mr-3" src="img/200.png" alt="klik logo">
+                                </picture>
                                   <div class="lh-100">
                                     <h1 class="mb-0 text-white lh-100">Latest Blogs</h1>
                                   </div>
@@ -185,16 +196,18 @@
                                                                 <i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['blog_votes'].'
                                                             </strong>
                                                             <h6 class="mb-0">
-                                                              <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.substr($row['blog_title'],0,10).'...</a>
+                                                              <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.avoidHtmlInjections(substr($row['blog_title'],0,10)).'...</a>
                                                             </h6>
                                                             <small class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['blog_date'])).'</small>
-                                                            <small class="card-text mb-auto">'.substr($row['blog_content'],0,40).'...</small>
+                                                            <small class="card-text mb-auto">'.avoidHtmlInjections(substr($row['blog_content'],0,40)).'...</small>
                                                             <a href="blog-page.php?id='.$row['blog_id'].'">Continue reading</a>
                                                           </div>
                                                           <a href="blog-page.php?id='.$row['blog_id'].'">
-                                                          <img class="card-img-right flex-auto d-none d-lg-block blogindex-cover" 
-                                                                src="uploads/'.$row['blog_img'].'" alt="Card image cap">
-                                                                    </a>
+                                                            <picture>
+                                                                <source srcset="uploads/'.pathinfo($row['blog_img'], PATHINFO_FILENAME).'.webp" type="image/webp">
+                                                                <img class="card-img-right flex-auto d-none d-lg-block blogindex-cover" src="uploads/'.$row['blog_img'].'" alt="Card image cap">
+                                                            </picture>
+                                                        </a>
                                                         </div>
                                                       </div>';
                                             }
@@ -209,7 +222,10 @@
                             <div class="tab-pane fade" id="poll" role="poll" aria-labelledby="poll-tab">
 
                                 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-                                    <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+                                <picture>
+                                    <source srcset="img/200.webp" type="image/webp">
+                                    <img class="mr-3" src="img/200.png" alt="klik logo">
+                                </picture>
                                   <div class="lh-100">
                                     <h1 class="mb-0 text-white lh-100">Latest Polls</h1>
                                   </div>
@@ -244,9 +260,12 @@
 
                                             echo '<a href="poll.php?poll='.$row['id'].'">
                                                 <div class="media text-muted pt-3">
-                                                    <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img poll-img">
+                                                <picture>
+                                                    <source srcset="img/poll-cover.webp" type="image/webp">
+                                                    <img src="img/poll-cover.png" alt="Poll Cover" class="mr-2 rounded div-img poll-img">
+                                                </picture>                                            
                                                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
-                                                      <strong class="d-block text-gray-dark">'.ucwords($row['subject']).'</strong></a>
+                                                      <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['subject'])).'</strong></a>
                                                           '.date("F jS, Y", strtotime($row['created'])).'
                                                            <br><br>
                                                            <span class="text-primary" >
@@ -277,7 +296,10 @@
                             <div class="tab-pane fade" id="event" role="event" aria-labelledby="event-tab">
 
                                 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-                                    <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+                                <picture>
+                                    <source srcset="img/200.webp" type="image/webp">
+                                    <img class="mr-3" src="img/200.png" alt="klik logo">
+                                </picture>
                                   <div class="lh-100">
                                     <h1 class="mb-0 text-white lh-100">Upcoming Events</h1>
                                   </div>
@@ -308,12 +330,16 @@
                                             $earlier = new DateTime(date("Y-m-d"));
                                             $later = new DateTime($row['event_date']);
                                             $diff = $later->diff($earlier)->format("%a");
-
+                                            
+                                        
                                             echo '<a href="event-page.php?id='.$row['event_id'].'">
                                                 <div class="media text-muted pt-3">
-                                                    <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img poll-img">
+                                                    <picture>
+                                                        <source srcset="uploads/'.pathinfo($row['event_image'], PATHINFO_FILENAME).'.webp" type="image/webp">
+                                                        <img src="uploads/'.$row['event_image'].'"  alt="Event Image" class="mr-2 rounded div-img poll-img">
+                                                    </picture>
                                                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                                      <strong class="d-block text-gray-dark">'.ucwords($row['title']).'</strong></a>
+                                                      <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['title'])).'</strong></a>
                                                       '.date("F jS, Y", strtotime($row['event_date'])).'<br><br>
                                                       <span class="text-primary" >'.$diff.' days remaining </span>
                                                     </p>
@@ -382,7 +408,7 @@
             var myVar;
 
             function pageLoad() {
-              myVar = setTimeout(showPage, 4000);
+              myVar = setTimeout(showPage, 0);
             }
 
             function showPage() {

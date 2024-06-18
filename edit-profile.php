@@ -12,6 +12,7 @@
     }
     
     include 'includes/HTML-head.php';  
+    include 'includes/functions.php';
 ?> 
 </head>
 <body>
@@ -24,9 +25,10 @@
                 <?php include 'includes/profile-card.php'; ?>
               
         <div class="col-sm-8 text-center" id="user-section">
-              
-              <img class="cover-img" id='blah-cover' src="img/user-cover.png">
-              
+              <picture>
+                  <source type="image/webp" srcset="img/user-cover.webp">
+                  <img class="cover-img" id="blah-cover" src="img/user-cover.png" alt="Cover image">
+              </picture>
               <form action="includes/profileUpdate.inc.php" method='post' enctype="multipart/form-data"
                     style="padding: 0 30px 0 30px;">
                     
@@ -34,13 +36,18 @@
                     <label class="btn btn-primary">
                         Change Avatar <input type="file" id="imgInp" name='dp' hidden>
                     </label>
-                    <img class="profile-img" id="blah"  src="#"> 
 
+                    <img class="profile-img" id="blah"  src="#"> 
 
                     <?php  
                           if ($_SESSION['userLevel'] === 1)
                           {
-                              echo '<img id="admin-badge" src="img/admin-badge.png">';
+                            echo '
+                              <picture>
+                                  <source type="image/webp" srcset="img/admin-badge.webp">
+                                  <img id="admin-badge" src="img/admin-badge.png" alt="Admin badge">
+                              </picture>
+                            ';
                           }
                     ?>
 
@@ -50,12 +57,12 @@
                     <div class="form-row">
                       <div class="col">
                         <input type="text" class="form-control" name="f-name" placeholder="First Name"
-                               value="<?php echo $_SESSION['f_name'] ?>" >
+                               value="<?php echo avoidHtmlInjections($_SESSION['f_name']) ?>" >
                         <small id="emailHelp" class="form-text text-muted">First Name</small>
                       </div>
                       <div class="col">
                         <input type="text" class="form-control" name="l-name" placeholder="Last Name" 
-                               value="<?php echo $_SESSION['l_name'] ?>" >
+                               value="<?php echo avoidHtmlInjections($_SESSION['l_name']) ?>" >
                         <small id="emailHelp" class="form-text text-muted">Last Name</small>
                       </div>
                     </div>
@@ -63,7 +70,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" name="email" placeholder="email" 
-                               value="<?php echo $_SESSION['emailUsers'] ?>" >
+                               value="<?php echo avoidHtmlInjections($_SESSION['emailUsers']) ?>" >
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                   
@@ -87,12 +94,12 @@
                     <div class="form-group">
                         <label for="headline">Profile Headline</label>
                         <input class="form-control" type="text" id="headline" name="headline" 
-                               placeholder="Your Profile Headline" value='<?php echo $_SESSION['headline']; ?>'><br>
+                               placeholder="Your Profile Headline" value='<?php echo avoidHtmlInjections($_SESSION['headline']); ?>'><br>
                         
                         <label for="edit-bio">Profile Bio</label>
                         <textarea class="form-control" id="edit-bio" rows="10" name="bio" maxlength="5000"
                             placeholder="What you want to tell people about yourself" 
-                            ><?php echo $_SESSION['bio']; ?></textarea>
+                            ><?php echo avoidHtmlInjections($_SESSION['bio']); ?></textarea>
                     </div>
                   
                   <hr>

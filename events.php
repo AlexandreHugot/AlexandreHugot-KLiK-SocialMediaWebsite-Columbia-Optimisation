@@ -12,9 +12,10 @@
     }
     
     include 'includes/HTML-head.php';
+    include 'includes/functions.php';
 ?>  
 
-	<link rel="stylesheet" type="text/css" href="css/list-page.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\events.min.css">
     </head>
     
     <body style="background: #f1f1f1">
@@ -24,7 +25,10 @@
 
         <main role="main" class="container">
       <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-          <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+            <picture>
+                <source type="image/webp" srcset="img/200.webp">
+                <img class="mr-3" src="img/200.png" alt="Klik logo" >
+            </picture>
         <div class="lh-100">
           <h1 class="mb-0 text-white lh-100">KLiK Events</h1>
           <small>Spreading Ideas</small>
@@ -66,9 +70,12 @@
                     
                     echo '<a href="event-page.php?id='.$row['event_id'].'">
                         <div class="media text-muted pt-3">
-                            <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img">
+                            <picture>
+                                <source srcset="uploads/'.pathinfo($row['event_image'], PATHINFO_FILENAME).'.webp" type="image/webp">
+                                <img src="uploads/'.$row['event_image'].'" alt="'.$row['event_image'].'" class="mr-2 rounded div-img">
+                            </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                              <strong class="d-block text-gray-dark">'.ucwords($row['title']).'</strong></a>
+                              <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['title'])).'</strong></a>
                               '.date("F jS, Y", strtotime($row['event_date'])).'<br>
                               <span class="text-primary" >'.$diff.'</span>
                             </p>

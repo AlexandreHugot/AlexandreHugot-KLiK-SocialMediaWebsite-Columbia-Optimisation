@@ -1,6 +1,7 @@
 <?php
     session_start();
     require("dbh.inc.php");
+    include 'functions.php';
     if(isset($_GET['c_id'])){
         $conversation_id = base64_decode($_GET['c_id']);
         
@@ -24,7 +25,7 @@
                 {
                     echo '<div class="outgoing_msg">
                             <div class="sent_msg">
-                              <p>'.$message.'</p>
+                              <p>'. avoidHtmlInjections($message).'</p>
                             </div>
                           </div>';
                 }
@@ -34,7 +35,7 @@
                             <div class="incoming_msg_img"> <img class="chat_people_inbox_img" src="uploads/'.$user_form_img.'"> </div>
                              <div class="received_msg">
                                 <div class="received_withd_msg">
-                                 <p>'.$message.'</p>
+                                 <p>'.avoidHtmlInjections($message).'</p>
                                      <br>
                                 </div>
                              </div>
