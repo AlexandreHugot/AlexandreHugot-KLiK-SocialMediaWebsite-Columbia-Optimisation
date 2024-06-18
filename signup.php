@@ -17,7 +17,7 @@
       </style>
     </head>
     
-    <nav class="navbar sticky-top navbar-expand-md navbar-light bg-dark">
+    <nav class="navbar sticky-top navbar-expand-md navbar-light " style=" background-color: #00BFFF">
      <a class="navbar-brand" href="index.php">
          <img src="img/200.png" width="40" height="40">
      </a>
