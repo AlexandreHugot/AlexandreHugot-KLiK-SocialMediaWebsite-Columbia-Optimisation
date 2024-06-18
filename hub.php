@@ -37,7 +37,7 @@
         
         <?php
 
-            $sql = "select blog_id, blog_img, blog_date, blog_votes, blog_title, blog_content, uidUsers
+            $sql = "select blog_id, blog_img, blog_date, blog_votes, blog_title, blog_content, blog_by, uidUsers
                     from blogs, users
                     where blogs.blog_by = users.idUsers
                     order by blog_votes desc
