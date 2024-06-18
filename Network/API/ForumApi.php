@@ -1,19 +1,14 @@
 <?php
 
-require_once('Network/database.class.php');
+require_once('BaseApi.php');
 
 /**
  * Class which allow to get, post or update data in the database related to forums
  * @author Lakhdar Gibril
  */
-class ForumApi {
+class ForumApi  extends BaseApi {
 
 
-    /**
-     * ----------- Attributes -----------
-    */
-    private Database $database;
-    
     /**
      *  ----------- Constructor -----------
     */
@@ -24,7 +19,7 @@ class ForumApi {
      * @author Lakhdar Gibril
      */
     public function __construct(Database $base){
-        $this->database = $base;
+        parent::__construct($base);
     }
 
     

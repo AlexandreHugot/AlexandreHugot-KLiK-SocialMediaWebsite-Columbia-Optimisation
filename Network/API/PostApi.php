@@ -1,18 +1,13 @@
 <?php
 
-require_once('Network/database.class.php');
+require_once('BaseApi.php');
 
 /**
  * Class PostApi which allow to act like an API for post data or related
  * @author Lakhdar Gibril
  */
-class PostApi {
+class PostApi extends BaseApi {
 
-    /**
-     * ----------- Attributes -----------
-    */
-    private Database $database;
-    
     /**
      *  ----------- Constructor -----------
     */
@@ -23,7 +18,7 @@ class PostApi {
      * @author Lakhdar Gibril
      */
     public function __construct(Database $base){
-        $this->database = $base;
+        parent::__construct($base);
     }
 
     

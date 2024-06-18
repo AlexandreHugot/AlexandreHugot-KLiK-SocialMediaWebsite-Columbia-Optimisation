@@ -1,21 +1,17 @@
 <?php
 
-require_once("Network/database.class.php");
+require_once('BaseApi.php');
 
 /**
  * Class which represent an API for the poll data
  * @author Lakhdar Gibril
  */
-class PollApi {
+class PollApi extends BaseApi {
 
-    /**
-     * ----------- Attributes -----------
-     */
-    private Database $database;
     
     /**
      *  ----------- Constructor -----------
-     */
+    */
 
     /**
      * Natural constructor which allow to create a new instance Database class
@@ -23,9 +19,9 @@ class PollApi {
      * @author Lakhdar Gibril
      */
     public function __construct(Database $base){
-        $this->database = $base;
+        parent::__construct($base);
     }
-
+    
     /**
      *  ----------- Methods -----------
     */

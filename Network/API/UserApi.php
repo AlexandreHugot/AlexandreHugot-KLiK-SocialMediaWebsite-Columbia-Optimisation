@@ -1,21 +1,16 @@
 <?php
 
-require_once('Network/database.class.php');
+require_once('BaseApi.php');
 
 /**
  * Class UserApi which regroup all the SQL query found in the source code
  * @author Lakhdar Gibril
  */
-class UserApi {
+class UserApi extends BaseApi {
 
-     /**
-     * ----------- Attributes -----------
-     */
-    private Database $database;
-    
     /**
      *  ----------- Constructor -----------
-     */
+    */
 
     /**
      * Natural constructor which allow to create a new instance Database class
@@ -23,7 +18,7 @@ class UserApi {
      * @author Lakhdar Gibril
      */
     public function __construct(Database $base){
-        $this->database = $base;
+        parent::__construct($base);
     }
 
     

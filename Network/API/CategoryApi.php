@@ -1,18 +1,13 @@
 <?php
 
-require_once('Network/database.class.php');
+require_once('BaseApi.php');
 
 /**
  * Class CategoryApi which allow to manipulate category data
  * @author Lakhdar Gibril
  */
-class CategoryApi {
+class CategoryApi extends BaseApi {
 
-    /**
-     * ----------- Attributes -----------
-    */
-    private Database $database;
-    
     /**
      *  ----------- Constructor -----------
     */
@@ -23,7 +18,7 @@ class CategoryApi {
      * @author Lakhdar Gibril
      */
     public function __construct(Database $base){
-        $this->database = $base;
+        parent::__construct($base);
     }
 
     

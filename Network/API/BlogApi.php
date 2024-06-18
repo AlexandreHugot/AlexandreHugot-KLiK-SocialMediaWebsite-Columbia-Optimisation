@@ -1,21 +1,16 @@
 <?php
 
-require_once('Network/database.class.php');
+require_once('BaseApi.php');
 
 /**
  * Class which act like an api to get the blog data from the database 
  * @author Lakhdar Gibril
  */
-class BlogApi {
+class BlogApi extends BaseApi{
 
     /**
-     * ----------- Attributes -----------
-     */
-    private Database $database;
-    
-    /**
      *  ----------- Constructor -----------
-     */
+    */
 
     /**
      * Natural constructor which allow to create a new instance Database class
@@ -23,7 +18,7 @@ class BlogApi {
      * @author Lakhdar Gibril
      */
     public function __construct(Database $base){
-        $this->database = $base;
+        parent::__construct($base);
     }
 
     /**

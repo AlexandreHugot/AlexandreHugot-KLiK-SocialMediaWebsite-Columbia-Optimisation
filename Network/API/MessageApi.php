@@ -1,17 +1,12 @@
 <?php
 
-require_once('Network/database.class.php');
+require_once('BaseApi.php');
 
 /**
  * Class which allow to get, post or update data in the database related to messages
  * @author Lakhdar Gibril
  */
-class MessageApi {
-    
-    /**
-     * ----------- Attributes -----------
-    */
-    private Database $database;
+class MessageApi extends BaseApi {
     
     /**
      *  ----------- Constructor -----------
@@ -23,7 +18,7 @@ class MessageApi {
      * @author Lakhdar Gibril
      */
     public function __construct(Database $base){
-        $this->database = $base;
+        parent::__construct($base);
     }
 
     
