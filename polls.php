@@ -2,11 +2,15 @@
 <?php
 
     session_start();
+    //fichier de connexion à la Base de données
     require 'includes/dbh.inc.php';
+    // Constante pour le titre de la page 
     define('TITLE',"Polls | KLiK");
     
+    // vérifie si l'utilisateur est authentifié
     if(!isset($_SESSION['userId']))
     {
+        // si pas authentifié renvoie la page de connexion 
         header("Location: login.php");
         exit();
     }
@@ -20,6 +24,7 @@
     
     <body style="background: #f1f1f1">
 
+         <!-- Inclut la barre de navigation -->   
         <?php include 'includes/navbar.php'; ?>
    
 
@@ -46,14 +51,16 @@
                     from polls p 
                     order by votes desc";
             
+            //initialialise la connexion 
             $stmt = mysqli_stmt_init($conn);    
-
+            //prépare l'instruction sql
             if (!mysqli_stmt_prepare($stmt, $sql))
             {
                 die('SQL error');
             }
             else
             {
+                //exécution de la requête
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
 
@@ -73,6 +80,7 @@
                             </p>
                             <span class="text-right">';
                     
+                     // Affiche une icône de suppression s'il est un admin
                     if ($_SESSION['userLevel'] == 1)
                     {
                         echo '<a href="includes/delete-poll.inc.php?pollid='.$row['id'].'" >
@@ -94,7 +102,7 @@
                 }
            }
            
-           
+            // Si l'utilisateur est un administrateur, affiche un bouton pour créer un sondage
             if ($_SESSION['userLevel'] == 1)
             {
                 echo '<small class="d-block text-right mt-3">
@@ -112,7 +120,7 @@
         
       </div>
     </main>
-        
+         <!-- Inclut le pied de page -->
         <?php include 'includes/footer.php'; ?>
         
 	<script src="js/jquery.min.js"></script>
