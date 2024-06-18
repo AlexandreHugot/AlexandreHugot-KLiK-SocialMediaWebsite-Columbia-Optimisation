@@ -49,11 +49,11 @@
             
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-3" >
+                    
 
                         <?php include 'includes/profile-card.php'; ?>
 
-                    </div>
+                    
 
                     <div class="col-sm-7" >
 
@@ -370,20 +370,28 @@
 
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col">
 
                         <div class="text-center p-3 mt-5">
                             <a href="team.php" target="_blank">
                                 <i class="creater-icon fa fa-users fa-5x" aria-hidden="true"></i>
                             </a>
-                            <p><br>THE CREATORS</p>
+                            <p class="mt-3 creator-text">THE CREATORS</p>
                         </div>
 
-                        <a href="forum.php" class="btn btn-warning btn-lg btn-block">KLiK Forum</a>
-                        <a href="hub.php" class="btn btn-secondary btn-lg btn-block">KLiK Hub</a>
+                        <a href="forum.php" class="btn btn-warning btn-lg btn-block my-2">
+                            <i class="fas fa-comments mr-2"></i>KLiK Forum
+                        </a>
+                        <a href="hub.php" class="btn btn-secondary btn-lg btn-block my-2">
+                            <i class="fas fa-comments mr-2"></i>KLiK Hub
+                        </a>
                         <br><br><br>
-                        <a href="create-topic.php" class="btn btn-warning btn-lg btn-block">Create a Forum</a>
-                        <a href="create-blog.php" class="btn btn-secondary btn-lg btn-block">Create a Blog</a>
+                        <a href="create-topic.php" class="btn btn-warning btn-lg btn-block my-2">
+                            <i class="fas fa-comments mr-2"></i>Create a Forum
+                        </a>
+                        <a href="create-blog.php" class="btn btn-secondary btn-lg btn-block my-2">
+                            <i class="fas fa-comments mr-2"></i>Create a Blog
+                        </a>
 
                     </div>
                 </div>

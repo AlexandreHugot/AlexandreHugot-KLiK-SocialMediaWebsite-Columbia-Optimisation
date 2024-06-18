@@ -4,7 +4,7 @@
     <head>
         <meta name="description" content="A Social Media Website" />
         <meta name="keywords" content="klik, social-media, social-network, forum" >
-  
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title><?php echo TITLE; ?></title>
         
         <link href="css/bootstrap.min.css" rel="stylesheet"> 

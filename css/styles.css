@@ -46,6 +46,13 @@ h1 {
     align-items: center;
 }
 
+#logonav {
+    background-color: #FFFFFF;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    
+  }
 
 #signup {
     background: url('../img/cover2.png') center center no-repeat;

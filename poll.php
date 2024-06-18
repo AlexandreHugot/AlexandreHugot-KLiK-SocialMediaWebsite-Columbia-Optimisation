@@ -42,39 +42,34 @@ ob_start(); // Démarre le tampon de sortie
         
         
         <div class="container">
-        <div class="row">
-          <div class="col-sm-3">
-            <!-- Inclut la carte de profil utilisateur -->
-            <?php include 'includes/profile-card.php'; ?>
-              
-          </div>
-            
 
-            <div class="col-sm-9" id="user-section">
+            <div class="row">
+                <div class="col-sm-3 d-none d-lg-block">
+                    
+                    <?php include 'includes/profile-card.php'; ?>
+                    
+                </div>
+                
+                
+                    <div class="col-sm-9" id="user-section">
+                    
+                         <picture>
+                            <source type="image/webp" srcset="img/pollpage-cover.webp">
+                            <img class="event-cover" src="img/pollpage-cover.png" alt="Event cover">
+                        </picture>
 
-              
-            <picture>
-                <source type="image/webp" srcset="img/pollpage-cover.webp">
-                <img class="event-cover" src="img/pollpage-cover.png" alt="Event cover">
-            </picture>
-
-
-              
-              <div class="px-5 my-5">
-                  <div class="px-5">
-                      
-
-                    <!-- Formulaire de vote -->
-                    <form action="" method="post" name="pollFrm">
-        
-                        <h1><?php echo avoidHtmlInjections($pollData['poll']['subject']); ?></h1>
-
-                        <br>
-                        <p class="text-muted"><?php echo avoidHtmlInjections($pollData['poll']['poll_desc']); ?></p>
-                        <br><br>
-                        
+                        <div class="px-5 my-5">
+                            <div class="px-5">
                             
-                        
+                                <form action="" method="post" name="pollFrm">
+                    
+                                    <h1><?php echo avoidHtmlInjections($pollData['poll']['subject']); ?></h1>
+                                    <br>
+                                    <p class="text-muted"><?php echo avoidHtmlInjections($pollData['poll']['poll_desc']); ?></p>
+                                    <br><br>
+
+        
+ 
                             <div class="funkyradio">
                             
                         
@@ -117,20 +112,14 @@ ob_start(); // Démarre le tampon de sortie
 
                                     //echo '<input type="radio" name="voteOpt" id="option'.$opt['id'].'" '
                                         //   . 'value="'.$opt['id'].'"';
+
                                     
-                                    echo '<div class="funkyradio-info">
-                                                <input type="radio" name="voteOpt" id="option'.$opt['id'].'"
-                                                    value="'.$opt['id'].'" ';
+                                        
                                     
-                                    if ($opt['id'] == $voted)
-                                    {
-                                        echo 'checked="checked" ';
-                                    }
-                                    if ($voteCheck === false)
-                                    {
-                                        echo 'disabled="disabled" ';
-                                    }
+                                        <div class="funkyradio">
+                                        
                                     
+
                                     echo            '> 
                                                     <label for="option'.$opt['id'].'">'.avoidHtmlInjections($opt['name']).'</label>
                                             </div>';
@@ -206,13 +195,15 @@ ob_start(); // Démarre le tampon de sortie
                         <input type="hidden" name="pollID" value="<?php echo avoidHtmlInjections($pollData['poll']['id']); ?>">
 
 
-                    </form>
-                  </div>
-              </div>
-              
-          </div>
+
+                                </form>
+                        </div>
+                    </div>
+                    
+                </div>
             
         </div>
+    </div>
 
 
       </div> <!-- /container -->
@@ -228,7 +219,9 @@ ob_start(); // Démarre le tampon de sortie
                 'poll_option_id' => $_POST['voteOpt'],
                 'poll_vote_by' => $_SESSION['userId']
             );
+
             // Insère les données du vote dans la bdd
+
             $voteSubmit = $poll->vote($voteData);
 
             // Actualise la page pour afficher les résultats mis à jour
