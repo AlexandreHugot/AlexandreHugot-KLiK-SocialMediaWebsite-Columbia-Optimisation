@@ -33,7 +33,7 @@
                       <div class="col-sm-5 col-md-6 signup-left  text-center">
                             <div class=" d-none d-lg-block">
                               
-                              <img alt="klik logo" src="img/200.png">
+                              <img class="mt-5"alt="klik logo" src="img/200.png">
                             
                             <br><br><br>
                             </div>
