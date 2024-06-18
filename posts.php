@@ -25,7 +25,7 @@
     include 'includes/HTML-head.php';
 ?> 
 
-        <link href="css/forum-styles.css" rel="stylesheet">
+        <link href="outputCss\posts.min.css" rel="stylesheet">
     </head>
     
 <body>

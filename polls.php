@@ -19,7 +19,7 @@
     include 'includes/functions.php';
 ?>  
 
-	<link rel="stylesheet" type="text/css" href="css/list-page.css">
+	<link rel="stylesheet" type="text/css" href="outputCss\polls.min.css">
     </head>
     
     <body style="background: #f1f1f1">

@@ -13,7 +13,7 @@
     include 'includes/HTML-head.php';
 ?>  
 
-        <link rel="stylesheet" type="text/css" href="css/comp-creation.css">
+        <link rel="stylesheet" type="text/css" href="outputCss\create-category.min.css">
 </head>
 
 <body>

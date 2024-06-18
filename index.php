@@ -21,8 +21,9 @@
     include 'includes/HTML-head.php';
     include 'includes/functions.php';
 ?> 
-        <link href="css/list-page.css" rel="stylesheet">
-        <link href="css/loader.css" rel="stylesheet">
+        <link href="outputCss\index1.min.css" rel="stylesheet">
+        <link href="outputCss\index2.min.css" rel="stylesheet">
+        
     </head>
     
     <body onload="pageLoad()">
