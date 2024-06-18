@@ -44,11 +44,11 @@
             
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-3 d-none d-lg-block" >
+                    
 
                         <?php include 'includes/profile-card.php'; ?>
 
-                    </div>
+                    
 
                     <div class="col-sm-7" >
 

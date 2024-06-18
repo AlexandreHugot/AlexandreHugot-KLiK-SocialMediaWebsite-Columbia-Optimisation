@@ -19,11 +19,10 @@
     <?php include 'includes/navbar.php'; ?>
       <div class="container">
         <div class="row">
-            <div class="col-sm-3">
+            
             
                 <?php include 'includes/profile-card.php'; ?>
-                
-            </div>
+              
         <div class="col-sm-8 text-center" id="user-section">
               
               <img class="cover-img" id='blah-cover' src="img/user-cover.png">

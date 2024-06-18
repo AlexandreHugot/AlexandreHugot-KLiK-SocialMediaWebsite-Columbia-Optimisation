@@ -29,11 +29,11 @@
     <?php include 'includes/navbar.php'; ?>
       <div class="container">
         <div class="row">
-          <div class="col-sm-3">
+          
             
               <?php include 'includes/profile-card.php'; ?>
               
-          </div>
+          
             
             
           <div class="col-sm-9" id="user-section">
