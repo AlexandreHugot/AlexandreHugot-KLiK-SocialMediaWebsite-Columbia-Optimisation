@@ -10,21 +10,33 @@
     }
     include 'includes/HTML-head.php';
 ?>  
-
+      <style>
+            body {
+            color: #FFA500 !important; /* Set background color to red */
+          }
+      </style>
     </head>
     
-    <body>
+    <nav class="navbar sticky-top navbar-expand-md navbar-light bg-dark">
+     <a class="navbar-brand" href="index.php">
+         <img src="img/200.png" width="40" height="40">
+     </a>
+
+      </nav>
 
         
-        <div id="signup">
+        <div id="">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 offset-sm-1">
+                    
                         
-                        <div class="signup-left position-fixed text-center">
+                      <div class="col-sm-5 col-md-6 signup-left  text-center">
+                            <div class=" d-none d-lg-block">
+                              
+                              <img alt="klik logo" src="img/200.png">
                             
-                            <img src="img/200.png">
                             <br><br><br>
+                            </div>
                             <?php
                             
                                 if(isset($_GET['error']))
@@ -99,27 +111,29 @@
                             ?>
                             <form id="signup-form" action="includes/signup.inc.php" method='post' 
                                   enctype="multipart/form-data">
+                                  <div class="col d-none d-lg-block">
                         
-                                <input type="submit" class="btn btn-light btn-lg" name="signup-submit" value="Signup">
+                                <input type="submit" class="mt-3 btn btn-light btn-dark" style="color :#FFA500 " name="signup-submit" value="Signup">
                                 
                                 <br><br>
-                                
-                                    <a  href="login.php">
-                                        <i class="fa fa-sign-in fa-2x social-icon" aria-hidden="true"></i>
-                                    </a> 
-                                    <a href="contact.php">
-                                        <i class="fa fa-envelope fa-2x social-icon" aria-hidden="true"></i>
-                                    </a>
+                                      
+                                          <a  href="login.php">
+                                              <i class="fa fa-sign-in fa-2x social-icon" aria-hidden="true"></i>
+                                          </a> 
+                                          <a href="contact.php">
+                                              <i class="fa fa-envelope fa-2x social-icon" aria-hidden="true"></i>
+                                          </a>
+                                      </div>
                                 
                             
-                        </div>
+                      </div>
                         
                         
-                    </div>
                     
-                    <div class="col-sm-6 offset-sm-6 text-center">
+                    
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0 text-center d-lg-block">
                         
-                        <h1 class="mt-5 text-muted">Signup and Lets Go!</h1>
+                        <h1 style="color:orange" class="mt-5 ">Signup and Lets Go!</h1>
                         <br><br><br>
                         
                         
@@ -188,6 +202,10 @@
                             <textarea class="form-control" id="bio" name="bio" rows="6" maxlength="1000"
                             placeholder="Tell people about yourself"></textarea>
                           </div>
+                          <div class="col d-sm-block d-lg-none">
+                          <input type="submit" class=" mb-3 btn btn-light btn-dark" style="color :#FFA500 " name="signup-submit" value="Signup">
+                          </div>
+                          
                     </form>
                 </div>
                     
