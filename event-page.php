@@ -43,6 +43,7 @@
 
                     <?php
 
+
                         try{
                                                 
                             /**
@@ -80,6 +81,7 @@
                             
                             $date1 = date_create(date("Y-m-d H:i:s",time())); //Format DATETIME DE MySQL
                             var_dump($date1);
+
                             $date2 = date_create($row['event_date']);
                             var_dump($date2);
                             
@@ -89,7 +91,9 @@
                              */
                             $diff = date_diff($date2,$date1);
 
+
                             var_dump($diff);
+
 
                             $diff_sec = $diff->format('%r').( 
                                                 ($diff->s)+ 
@@ -111,9 +115,17 @@
                         }
                     ?>
 
-                    <img class="blog-cover" src="uploads/<?php echo $row['event_image']; ?>">
+                    <!-- Pour l'image de couverture du blog -->
+                    <picture>
+                        <source srcset="uploads/<?php echo pathinfo($row['event_image'], PATHINFO_FILENAME); ?>.webp" type="image/webp">
+                        <img class="blog-cover" src="uploads/<?php echo $row['event_image']; ?>" alt="<?php echo $row['event_image']; ?>">
+                    </picture>
 
-                    <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>">
+                    <!-- Pour l'image de l'auteur du blog -->
+                    <picture>
+                        <source srcset="uploads/<?php echo pathinfo($row['userImg'], PATHINFO_FILENAME); ?>.webp" type="image/webp">
+                        <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>" alt="<?php echo $row['userImg']; ?>">
+                    </picture>
 
                     <div class="px-5">
                         <div class="text-center px-5">

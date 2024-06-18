@@ -27,7 +27,10 @@
         <main role="main" class="container">
             
       <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-          <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+        <picture>
+            <source type="image/webp" srcset="img/200.webp">
+            <img class="mr-3" src="img/200.png" alt="Klik logo" >
+        </picture>
         <div class="lh-100">
           <h1 class="mb-0 text-white lh-100">KLiK Blogs</h1>
           <small>The KLiK Hub</small>
@@ -36,6 +39,7 @@
 
       <div class="row mb-2">
           
+
                 <?php
                   /**
                    * On essaie de se connecter à la base de donnée, si on y arrive pas on affiche un message d'erreur ------------------
@@ -97,6 +101,7 @@
                             </div>
                           </div>
                         </div>';
+
                     }
                 ?>        
           

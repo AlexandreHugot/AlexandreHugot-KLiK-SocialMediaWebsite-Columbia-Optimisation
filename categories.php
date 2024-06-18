@@ -62,7 +62,10 @@
                     
                     echo '<a href="topics.php?cat='.$row['cat_id'].'">
                         <div class="media text-muted pt-3">
-                            <img src="img/forum-cover.png" alt="" class="mr-2 rounded div-img ">
+                            <picture>
+                                <source type="image/webp" srcset="img/forum-cover.webp">
+                                <img src="img/forum-cover.png" alt="cover forum image" class="mr-2 rounded div-img">
+                            </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
                               <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['cat_name'])).'</strong></a>
                                   <br>'.avoidHtmlInjections($row['cat_description']).'

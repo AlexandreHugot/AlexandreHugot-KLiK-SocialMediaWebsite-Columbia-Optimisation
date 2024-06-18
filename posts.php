@@ -179,9 +179,14 @@
 
                                     <div class="col-sm-3 user">
                                         <div class="text-center">
-                                            <img src="uploads/'.$row['userImg'].'" class="img-fluid center-block user-img">
+
+                                        <picture>
+                                            <source type="image/webp" srcset="uploads/'.pathinfo($row['userImg'], PATHINFO_FILENAME).'.webp">
+                                            <img src="uploads/'.$row['userImg'].'" class="img-fluid center-block user-img" alt="User image">
+                                        </picture>
                                             <h3>'.avoidHtmlInjections($row['uidUsers']).'</h3>
                                             <small class="text-muted">'.avoidHtmlInjections($row['headline']).'</small><br><br>
+
                                             <table style="width:100%">
                                                 <tr>
                                                     <th>Joined:</th>

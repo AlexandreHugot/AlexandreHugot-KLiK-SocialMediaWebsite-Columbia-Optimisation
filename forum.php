@@ -26,7 +26,10 @@
 
         <main role="main" class="container">
       <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-          <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+        <picture>
+            <source type="image/webp" srcset="img/200.webp">
+            <img class="mr-3" src="img/200.png" alt="Klik logo" >
+        </picture>
         <div class="lh-100">
           <h1 class="mb-0 text-white lh-100">KLiK Forums</h1>
           <small>Spreading Ideas</small>
@@ -62,7 +65,10 @@
                     
                     echo '<a href="topics.php?cat='.$row['cat_id'].'">
                         <div class="media text-muted pt-3">
-                            <img src="img/forum-cover.png" alt="" class="mr-2 rounded div-img ">
+                            <picture>
+                                <source srcset="img/'.pathinfo('forum-cover.png', PATHINFO_FILENAME).'.webp" type="image/webp">
+                                <img src="img/forum-cover.png" alt="Forum Cover" class="mr-2 rounded div-img">
+                            </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
                               <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['cat_name'])).'</strong></a>
                                   <br>'.avoidHtmlInjections($row['cat_description']).'
@@ -138,7 +144,10 @@
                     
                     echo '<a href="posts.php?topic='.$row['topic_id'].'">
                         <div class="media text-muted pt-3">
-                            <img src="uploads/'.$row['userImg'].'" alt="" class="mr-2 rounded div-img">
+                            <picture>
+                                <source srcset="uploads/'.pathinfo($row['userImg'], PATHINFO_FILENAME).'.webp" type="image/webp">
+                                <img src="uploads/'.$row['userImg'].'" alt="User Image" class="mr-2 rounded div-img">
+                            </picture>
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                               <strong class="d-block text-gray-dark">'.avoidHtmlInjections(ucwords($row['topic_subject'])).'</strong></a>
                               <span class="text-warning">'.avoidHtmlInjections(ucwords($row['uidUsers'])).'</span><br>

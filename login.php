@@ -25,7 +25,11 @@
         <div id="cover-caption">
             <div class="container">
                 <div class="col-sm-10 offset-sm-1">
-                    <img src='img/200.png'>
+                    
+                    <picture>
+                        <source type="image/webp" srcset="img/500.webp">
+                        <img class="mr-3" src="img/500.png" alt="Klik logo" width="300" height="auto">
+                    </picture>
                     <h5 class="text-white">Spreading Ideas</h5>
                     <br>
                     <?php
